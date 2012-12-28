@@ -1,0 +1,55 @@
+[client]
+port        = 3306
+socket      = /tmp/mysql.sock
+
+[mysqld]
+user        = mysql
+port        = 3306
+socket      = /tmp/mysql.sock
+
+basedir     = /usr/local/mysql-5.5.21
+datadir     = /data/mysql/3306/data
+pid-file    = /data/mysql/3306/mysql.pid
+
+#================================================
+#   已经熟悉的参数 start
+#================================================
+
+max_connections = 500   # 默认是100如果太小会造成登录失败，报"Too many connections"错误
+max_connect_errors = 500    # 默认是10， 太小会造成‘host_name’ is blocked错误
+
+tmp_table_size=200M     # 默认是16M，太小会造成MySQL占CPU多
+
+
+wait_timeout = 600      # 逾期時間(单位s), 太长会造成show processlist太多, 间接造成"Too many connections"错误
+interactive_timeout = 600
+
+skip-name-resolve  # 
+
+#---日志参数----------------------------------------
+log-bin = /data/mysql/3306/logs/binlog/mysql-bin    #二进制日志参数
+log-error = /data/mysql/3306/logs/error.log         # 错误日志参数
+
+#日志存放形式
+#also can be FILE,TABLE or TABLE or NONE
+log_output=FILE
+
+
+slow_query_log = 1  #是否启用慢查询日志
+slow_query_log_file = /data/mysql/3306/logs/slow.log   # 慢查询日志, 也可以用--slow-query-log-file代替, 亦即原来的log-slow-queries选项
+long_query_time=2                   # 慢查询时间
+
+general_log = 1 #是否开启基本日志
+general_log_file = /data/mysql/3306/logs/log.log             #查询日志也可以用--general-log-file代替,　亦即原来--log选项
+
+log-update = /data/mysql/3306/logs/update.log   #更新日志
+
+#---innodb参数---------------------------------------
+innodb_lock_wait_timeout = 500      # 默认50锁等待时间(超过这个时间报Lock wait timeout exceeded; try restarting transaction)
+
+
+#---其他参数------------------------------------------
+slow_launch_time = 1    # 这个参数跟慢查询日志没有任何关系, 它代表的是thread create的一个阈值, 如果thread create的时间超过了该值, 则变量slow_launch_threads会加1(slow_query_thread的值也是一个system overload的反映)
+
+
+
