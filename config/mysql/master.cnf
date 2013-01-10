@@ -40,7 +40,7 @@ thread_concurrency = 8
 
 
 #---日志参数----------------------------------------
-log-bin = /data/mysql/3306/logs/binlog/mysql-bin    #二进制日志参数
+log-bin = /data/mysql/3306/logs/binlog/master-bin    #二进制日志参数
 log-error = /data/mysql/3306/logs/error.log         # 错误日志参数
 
 #日志存放形式
