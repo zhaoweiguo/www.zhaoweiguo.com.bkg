@@ -86,3 +86,6 @@ server-id = 2
 
 replicate-ignore-db = mysql
 replicate-ignore-db = test
+
+relay_log=/data/mysql/3306/logs/relaylog/mysql-relay-bin
+read_only=1
