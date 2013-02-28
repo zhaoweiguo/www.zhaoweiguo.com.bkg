@@ -1,0 +1,1378 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0054)http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-TW" lang="zh-TW"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="Author" content="VBird, 鸟哥">
+	<meta name="Description" content="透过 squid 来进行代理服务器 (proxy) 的设定辅助区网的 www 浏览控制！">
+	<title>鸟哥的 Linux 私房菜 -- 代理服务器的设定： squid</title>
+    <script src="./linux_server_17_squid_files/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="./linux_server_17_squid_files/index.js" type="text/javascript"></script>
+	<link href="./linux_server_17_squid_files/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css">
+    <link href="./linux_server_17_squid_files/main.css" rel="stylesheet" type="text/css">
+    </head><body style="margin: 0pt; padding: 0pt;" class="table" onload="MM_preloadImages(&#39;image/title_19.png&#39;,&#39;image/title_26.png&#39;,&#39;image/title_27.png&#39;,&#39;image/title_28.png&#39;,&#39;image/title_06.png&#39;,&#39;image/title_08.png&#39;,&#39;image/title_10.png&#39;,&#39;image/title_12.png&#39;)">
+
+<center>
+<div id="apDiv5">
+<div> <link rel="SHORTCUT ICON" href="http://vbird.dic.ksu.edu.tw/linux_server/favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0" ;="">
+	<tbody><tr>
+		<td colspan="15">
+			<img src="./linux_server_17_squid_files/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="./linux_server_17_squid_files/Count.cgi" width="93" align="left" title="計數器"></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="./linux_server_17_squid_files/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="./linux_server_17_squid_files/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="./linux_server_17_squid_files/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_basic/0110whatislinux.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image51&#39;,&#39;&#39;,&#39;image/title/title_06.png&#39;,1)"><img src="./linux_server_17_squid_files/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""></a></td>
+		<td rowspan="2">
+			<img src="./linux_server_17_squid_files/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image52&#39;,&#39;&#39;,&#39;image/title/title_08.png&#39;,1)"><img src="./linux_server_17_squid_files/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""></a></td>
+		<td rowspan="2">
+			<img src="./linux_server_17_squid_files/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image53&#39;,&#39;&#39;,&#39;image/title/title_10.png&#39;,1)"><img src="./linux_server_17_squid_files/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""></a></td>
+		<td rowspan="3">
+			<img src="./linux_server_17_squid_files/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image54&#39;,&#39;&#39;,&#39;image/title/title_12.png&#39;,1)"><img src="./linux_server_17_squid_files/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""></a></td>
+		<td rowspan="3">
+			<img src="./linux_server_17_squid_files/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="./linux_server_17_squid_files/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="./linux_server_17_squid_files/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="./linux_server_17_squid_files/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="./linux_server_17_squid_files/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="./linux_server_17_squid_files/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_basic/linux_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image44&#39;,&#39;&#39;,&#39;image/title/title_19.png&#39;,1)" class="MenuBarItemSubmenu"><img src="./linux_server_17_squid_files/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44"></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_basic/Mandrake9.0/mandrake9.0.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image46&#39;,&#39;&#39;,&#39;image/title/title_26.png&#39;,1)"><img src="./linux_server_17_squid_files/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt=""></a></li>
+                  <li><a href="http://vbird.dic.ksu.edu.tw/linux_basic/fedora_4/fc4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image47&#39;,&#39;&#39;,&#39;image/title/title_27.png&#39;,1)"><img src="./linux_server_17_squid_files/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt=""></a></li>
+                  <li><a href="http://vbird.dic.ksu.edu.tw/linux_basic/linux_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image48&#39;,&#39;&#39;,&#39;image/title/title_28.png&#39;,1)"><img src="./linux_server_17_squid_files/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt=""></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="./linux_server_17_squid_files/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image45&#39;,&#39;&#39;,&#39;image/title/title_21.png&#39;,1)" class="MenuBarItemSubmenu"><img src="./linux_server_17_squid_files/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45"></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image43&#39;,&#39;&#39;,&#39;image/title/title_26.png&#39;,1)"><img src="./linux_server_17_squid_files/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image49&#39;,&#39;&#39;,&#39;image/title/title_27.png&#39;,1)"><img src="./linux_server_17_squid_files/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt=""></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage(&#39;Image50&#39;,&#39;&#39;,&#39;image/title/title_28.png&#39;,1)"><img src="./linux_server_17_squid_files/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt=""></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="./linux_server_17_squid_files/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="./linux_server_17_squid_files/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="./linux_server_17_squid_files/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="./linux_server_17_squid_files/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="./linux_server_17_squid_files/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="./linux_server_17_squid_files/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="./linux_server_17_squid_files/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="./linux_server_17_squid_files/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="./linux_server_17_squid_files/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="./linux_server_17_squid_files/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="./linux_server_17_squid_files/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="./linux_server_17_squid_files/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="./linux_server_17_squid_files/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="./linux_server_17_squid_files/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="./linux_server_17_squid_files/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="./linux_server_17_squid_files/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</tbody></table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+<table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+<tr><td style="width: 16px; font-size: 6px;">　</td>
+    <td width="866">
+
+<!-- 本文的档头部分 -->
+<div style="text-align:center">
+    <a href="http://linux.vbird.org/linux_server/0420squid.php">
+    <span class="text_head0">第十七章、区网控制者：<span class="text_head_en"> Proxy </span>服务器</span></a><br>
+</div>
+    <div style="text-align:right">
+        <span class="text_history">最近更新日期：2011/08/02</span>
+    </div>
+
+<!-- 本文的档头部分 -->
+<center><table class="head1" summary="排版：文章档头的说明"><tbody><tr><td class="head1">
+	代理服务器的功能是可以代理局域网络的个人计算机来向因特网取得网页或其他数据的一种服务，
+	由于代理取得的数据可以保存一份在服务器的快取上，因此以往有类似『假象加速』的功能！不过，目前网络带宽已经比以前好很多，
+	因此代理服务器倒是很少使用在这方面。取而代之的是局域网络『高阶防火墙』的角色！这里的『高阶』指的是 OSI
+	七层协议里面的高层，因为代理服务器是用在应用层上的一种防火墙方式啦！不像 iptables 
+	是用在网络、传输层。Linux 上启动代理服务器的是 squid 这个软件呦！
+</td></tr></tbody></table></center><br>
+
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+17.1 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#theory">什么是代理服务器 (Proxy)</a><br>
+	<span class="text_h2">
+	　　17.1.1 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#theory_whatisproxy">什么是代理服务器</a><br>
+	　　17.1.2 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#theory_proxysworks">代理服务器的运作流程</a><br>
+	　　17.1.3 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#theory_parent_proxy">上层代理服务器</a><br>
+	　　17.1.4 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#theory_proxynadnat">代理服务器与 NAT 服务器的差异</a><br>
+	　　17.1.5 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#theory_things">架设代理服务器的用途与优缺点</a><br>
+	</span>
+17.2 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#server">Proxy 服务器的基础设定</a><br>
+	<span class="text_h2">
+	　　17.2.1 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#server_pkg">Proxy 所需的 squid 软件及其软件结构</a><br>
+	　　17.2.2 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#server_default">CentOS 预设的 squid 设定</a>： <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#http_port">http_port</a>,
+		<a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#cache_dir">cache_dir (SELinux)</a>, <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#cache_mem">cache_mem</a><br>
+	　　17.2.3 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#server_acl">管控信任来源 (如区网) 与目标 (如恶意网站)： acl 与 http_access 的使用</a><br>
+	　　17.2.4 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#server_other">其他额外的功能项目</a><br>
+	　　17.2.5 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#server_security">安全性设定：防火墙, SELinux 与黑名单档案</a><br>
+	</span>
+17.3 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#client">客户端的使用与测试</a><br>
+	<span class="text_h2">
+	　　17.3.1 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#client_browser">浏览器的设定： firefox &amp; IE</a><br>
+	　　17.3.2 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#client_error">测试 proxy 失败的画面</a><br>
+	</span>
+17.4 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#adv">服务器的其他应用设定</a><br>
+	<span class="text_h2">
+	　　17.4.1 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#adv_parent">上层 Proxy 与获取数据分流的设定</a><br>
+	　　17.4.2 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#adv_transparent">Proxy 服务放在 NAT 服务器上：通透式代理 (Transparent Proxy)</a><br>
+	　　17.4.3 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#adv_auth">Proxy 的认证设定</a><br>
+	　　17.4.4 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#adv_sarg">末端登录档分析： sarg</a><br>
+	</span>
+17.5 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#hint">重点回顾</a><br>
+17.6 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#ex">本章习题</a><br>
+17.7 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#reference">参考数据与延伸阅读</a><br>
+<span class="text_h2">
+17.8 <a href="http://phorum.vbird.org/viewtopic.php?f=16&t=35439" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?f=16&amp;t=35439</a><br>
+</span>
+</span>
+</div>
+
+
+<!-- 本文的正式部分 -->
+<hr><a name="theory"></a><img src="./linux_server_17_squid_files/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">17.1 什么是代理服务器 (Proxy)</span><br>
+<div class="block1">
+	<p>代理服务器 (Proxy) 的原理其实很简单啦！就是以类似代理人的身份去取得用户所需要的数据就是了！
+	但是由于它的『代理』能力，使得我们可以透过代理服务器来达成防火墙功能与用户浏览数据的分析！
+	此外，也可以藉由代理服务器来达成节省带宽的目的，以及加快内部网络对因特网的 WWW 访问速度！总之，
+	代理服务器对于企业来说，实在是一个很不错的东西啊！<br><br></p>
+
+	<hr><a name="theory_whatisproxy"></a><img src="./linux_server_17_squid_files/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">17.1.1 什么是代理服务器</span><br>
+	<div class="block2">
+		<p>在真实世界中，我们或许会帮忙家人去办理一些杂务吧！举个例子来说，例如缴费或者是申办提款卡等等的，
+		由于你并不是『申请者本人』而是『代理人』的角色，因此有时候会需要秀出一些证件就是了。
+		那么在网络上面的代理服务器 (Proxy Server) 是怎么回事呢？它最主要的功能就如同我们上面提的真实世界一样，
+		<span class="text_import2">当客户端有因特网的数据要求时，Proxy 会帮用户去向目的地取得用户所需要的数据</span>。
+		所以，当客户端指定 WWW 的代理服务器之后，用户的所有 WWW 相关要求就会通过代理服务器去捉取啰！
+		整个代理服务器与客户端的相关性可以由下图约略看出一个端倪：</p>
+
+		<a name="fig17.1-1"></a>
+		<center><img src="./linux_server_17_squid_files/proxy_server_01.gif" alt="代理服务器、客户端与因特网的相关性示意图" title="代理服务器、客户端与因特网的相关性示意图" border="0"><br>
+		图 17.1-1、代理服务器、客户端与因特网的相关性示意图<br></center>
+
+		<p>一般来说，代理服务器会架设在整个区网的单点对外防火墙上头，而在区网内部的计算机就都是透过 Proxy 
+		来向因特网要求数据的，这就是所谓的『代理服务器』啦！当然，上面的架构仅只是一个案例，但是这个架构比较多人用的原因，
+		是因为这样的 Proxy server 还可以兼做高阶防火墙之用啦！</p>
+
+		<p>在 Proxy 与客户端的相关性当中，你必需要了解的是：<span class="text_import2">客户端向外部要求的资料事实上都是
+		Proxy 帮用户取得的</span>，因此因特网上面看到要求数据者，将会是 Proxy 服务器的 IP 而不是客户端的 IP。
+		举个例子来说，假如鸟哥在我的浏览器设定了我们学校的代理服务器主机 proxy.ksu.edu.tw 
+		做为我的 Proxy 好了，再假设我的 IP 是 120.114.141.51 ，那么当我想要取得 Yahoo 的新闻信息时，事实上，都是
+		proxy.ksu.edu.tw 帮我去取得的，所以在 Yahoo 的网站上面看到要求数据的人是谁呢？呵呵！当然就是
+		proxy.ksu.edu.tw 而不是 120.114.141.51 啰！这样可以了解 Proxy 的功能了吗？</p>
+
+		<p>除了这个功能之外，<span class="text_import2">Proxy 还有一个很棒的额外功能，那就是防火墙的功能</span>！
+		看一下上面的图示，你可以发现一件事情，那就是客户端的个人计算机要连上因特网一定要经过 Proxy 
+		服务器。并且，如果有人想要入侵你的系统时，由于你的 proxy 在最外部啊，所以攻击者就会攻击错方向，如此一来，不就比较安全！
+		此外，由于整个因特网对外都是经过 proxy ，也就是『单点对外』的情况，这种状态底下要来管理防火墙也是比较简单的喔！^_^</p>
+	</div>
+
+	<hr><a name="theory_proxysworks"></a><img src="./linux_server_17_squid_files/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">17.1.2 代理服务器的运作流程</span><br>
+	<div class="block2">
+		<p>了解了 Proxy 的功能之后，我们来谈一谈那么 Proxy 到底是怎样运作的呢？为何它会有『加快网络存取效率』的好处？
+		这就必需要以底下的图示来说明了！</p>
+
+		<center><img src="./linux_server_17_squid_files/proxy_server_02.gif" alt="代理服务器的运作流程图：快取数据与客户端" title="代理服务器的运作流程图：快取数据与客户端" border="0"><br>
+		图 17.1-2、代理服务器的运作流程图：快取数据与客户端<br></center>
+
+		<p>当客户端指定了代理服务器之后，在客户端想要取得因特网上面的信息时，它是这样取得数据的
+		(注：那个 Cache 表示为 Proxy 服务器的硬盘的意思)：<br><br></p>
+
+		<ul class="list1"><li class="text_import1"><hr>当 Proxy 的快取拥有用户所想要的数据时 (Step a ~ d)：</li></ul>
+
+		<ol type="a">
+		<li>Client 端向 Server 端发送一个数据需求封包；<br><br></li>
+		<li>Server 端接收之后，先比对这个封包的『来源』与预计要前往的『目标』网站是否为可接受？
+		如果来源与目标都是合法的，或者说，来源与目标网站我们的 Proxy 都能帮忙取得资料时，那么 Server 
+		端会开始替 Client 取得资料。这个步骤中比较重要的就是『比对政策』啦，有点像是认证的感觉啦；<br><br></li>
+		<li>Server 首先会检查自己快取 (新的数据可能在内存中，较旧的数据则放置在硬盘上) 数据，
+		如果有 Client 所需的数据，那就将数据准备取出，而不经过向 Internet 要求数据的程序；<br><br></li>
+		<li>最后当然就是将数据回传给 Client 端啰！<br><br></li>
+		</ol>
+
+		<ul class="list1"><li class="text_import1"><hr>当 Proxy 的快取没有用户所想要的数据时 (Step 1 ~ 5)：</li></ul>
+
+		<ol>
+		<li>Client 端向 Server 端发送一个数据需求封包；</li>
+		<li>Server 端接收之后，开始进行政策比对；</li>
+		<li>Server 发现快取并没有 Client 所需要的资料，准备前往因特网抓取数据；</li>
+		<li>Server 开始向 Internet 发送要求与取得相关资料；</li>
+		<li>最后当然就是将数据回传给 Client 端啰！<br><br></li>
+		</ol>
+
+		<hr>
+		<p>上面的流程分析里面，我们可以清楚的知道，<span class="text_import2">当 Proxy 曾经帮某位用户取得过 A 
+		数据后，当后来的用户想要重复取得 A 数据时，那么 Proxy 就会从自己的快取里面将 A 
+		数据取出传送给用户，而不用跑到因特网去取得同样的这份资料喔</span>。因为没有去因特网找数据，当步骤 4 的流程很花时间时，那么透过 
+		Proxy 忽略步骤 4 ，感觉上就好像网络速度变快了！但其实只是直接从 Proxy 的快取里面抓而已 
+		(所以才会有人说『假象网络加速』的功能)！这就是两个流程最大的差异了。</p>
+
+		<p>在目前的因特网社会里，由于宽带技术已经很成熟，所以在不乱用的情况下，网络带宽理论上是足够的 (除非要连到国外去)。
+		那么用了 Proxy 之后效能会不会更提升呢？答案是，『应该不会』！啥？怎么会这样呢？从上面的流程分析中，
+		我们发现 Proxy 会常常去读取硬盘内的数据，而硬盘内的快取数据又是透过某些特殊方式在管理，
+		因此要找到该份数据就要花一些时间，再加上如果硬件效能 (硬盘或主板芯片组) 不佳时，那么加了 Proxy 
+		反而会让你感觉网络传输怎么『卡卡的』呦！这点得要特别注意才行！</p>
+
+		<div style="padding: 10pt 0pt 10pt 0pt ;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color : #009000"><font size="-1">		Proxy 对于 cache 的速度是很要求的，而这个 cache 就是硬盘啦！当然，硬盘容量必需要足够大，而且还要『足够快』才行！
+		因为由上面的流程当中，我们不难发现，cache 是一直被重复存取的一个地方喔！所以硬盘的好坏就差别很大啦！可以说他是影响一个
+		Proxy 效能好坏的关键点呢！
+		</font></span></td><td><img src="./linux_server_17_squid_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
+
+	<hr><a name="theory_parent_proxy"></a><img src="./linux_server_17_squid_files/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">17.1.3 上层代理服务器</span><br>
+	<div class="block2">
+		<p>想一想，既然 Proxy 是帮忙客户端进行网页代理的工作，那么我们的 Proxy 能不能也指定另外一台 Proxy 当成我的 Proxy 的 
+		Proxy 呢？很绕口吧！其实流程像底下这样啦：</p>
+
+		<center><img src="./linux_server_17_squid_files/proxy_server_parent.gif" alt="上层代理服务器示意图" title="上层代理服务器示意图" border="0"><br>
+		图 17.1-3、上层代理服务器示意图<br></center>
+
+		<p>就是我们的 Local proxy 并不会主动的去捉数据，而是再透过『上层代理服务器』向 Internet 
+		要求资料！这样有什么好处呢？由于可做为我们的上层代理服务器的主机通常是具有较高带宽的，
+		因此我们透过它去要求数据当然『理论上』速度会更快喔！而上层代理服务器最大的好处其实是在于『分流』喔！
+		例如下图所示：</p>
+
+		<a name="fig17.1-4"></a>
+		<center><img src="./linux_server_17_squid_files/proxy_server_parent_more.gif" alt="以多部上层代理服务器达到分流的效果示意图" title="以多部上层代理服务器达到分流的效果示意图" border="0"><br>
+		图 17.1-4、以多部上层代理服务器达到分流的效果示意图<br></center>
+
+		<p>我总共设定了三部上层代理服务器，由于这三个代理服务器对外的速度都不相同，所以，当我要去美国时，就以
+		Proxy1 来要求资料，要连欧洲就以 Proxy3 ，至于要连日本，就以 Proxy 2 来要求我所需要的数据，如此一来，呵呵！可以让我的
+		Proxy 达到最佳的效能喔！很不错吧！此外，为了节省上层 proxy 的负担，如果是其他网络位置，我们则设定由自己的 local proxy 捉取～
+		设定的弹性很高呢！</p>
+
+		<p>由于代理服务器需要管控信任的来源端客户端计算机，因此各 ISP 仅能针对自家的用户来开放 Proxy 使用权而已。
+		台湾常见的几家 ISP 提供的 Proxy 有：</p>
+
+		<ul>
+		<li>Hinet： <a href="http://service.hinet.net/2004/new_adsl04.htm" target="_blank">http://service.hinet.net/2004/new_adsl04.htm</a></li>
+		<li>SeedNet： <a href="https://service.seed.net.tw/home/setting/server.htm" target="_blank">https://service.seed.net.tw/home/setting/server.htm</a></li>
+		</ul>
+
+		<p>由于当用户透过 Proxy 连到因特网时，网络看到的是 Proxy 在抓取数据而不是该客户端，因此，我们不难发现 Proxy 
+		有可能会被客户端过度的滥用，同时也有可能会被拿来为非作歹啊！所以，目前绝大部分的
+		Proxy 已经『停止对外开放』了，仅针对自己的网域内的用户提供本项服务而已～</p>
+
+		<p>因此，如果你要自行设定 Proxy 的时候，请记得去你当初申请网络的 ISP (如果是学术单位，请到贵单位的计中网页瞧瞧即可) 
+		搜寻一下，才能比较有效的设定好你的服务器喔！因为设定错误的话，呵呵！上层 Proxy 根本不提供服务，或者是上层 Proxy 
+		的效能并不好，那个时候你的 Proxy 也会连带的受到很大的影响啊！慎选！慎选！</p>
+	</div>
+
+	<hr><a name="theory_proxynadnat"></a><img src="./linux_server_17_squid_files/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">17.1.4 代理服务器与 NAT 服务器的差异</span><br>
+	<div class="block2">
+		<p>或许你已经发现了一件事，那就是：在内部局域网络使用私有 IP 的客户端，不论透过 Proxy 或者 NAT 均可以直接取得 WWW 
+		的服务，那么 NAT 与 Proxy 有没有什么不同的地方啊？它们不都是可以让内部的计算机连接出去吗？其实这两个玩意儿差异性是『相当大』的喔！
+		简单说明如下：</p>
+
+		<ul style="padding-left: 20px">
+		<li><span class="text_import2">NAT 服务器的功能</span>：<br>
+		就如同<a href="http://linux.vbird.org/linux_server/0250simple_firewall.php">第九章</a>提到的数据，Linux 的 NAT 功能主要透过封包过滤的方式，
+		并使用 iptables 的 nat 表格进行 IP 伪装 (SNAT) ，让客户端自行前往因特网上的任何地方的一种方式。主要的运作行为是在 OSI
+		七层协定的二、三、四层。由于是透过封包过滤与伪装，因此客户端可以使用的端口号码 (第四层) 较弹性；<br><br></li>
+
+		<li><span class="text_import2">Proxy 服务器的功能</span>：<br>
+		主要透过 Proxy 的服务程序 (daemon) 提供网络代理的任务，因此 Proxy 能不能进行某些工作，与该服务的程序功能有关。
+		举例来说，如果你的 Proxy 并没有提供邮件或 FTP 代理，那么你的客户端就是无法透过 Proxy 去取得这些网络资源。
+		主要运作的行为在 OSI 七层协议的应用层部分 (所谓的比较"高阶"之意)。</li>
+		</ul>
+
+		<p>这样说有没有比较有点概念了呢？NAT 服务器是由较底层的网络去进行分析的工作，至于通过
+		NAT 的封包是干嘛用的， NAT 不去管他！至于 proxy 则主要是由一个 daemon 的功能达成的，所以必需要符合该
+		daemon 的需求，才能达到某些功能！</p>
+	</div>
+
+	<hr><a name="theory_things"></a><img src="./linux_server_17_squid_files/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">17.1.5 架设代理服务器的用途与优缺点</span><br>
+	<div class="block2">
+		<p>现在我们约略知道 Proxy 的功能了，那么通常什么情况下会架设 Proxy 呢？一般来说，代理服务器的功能主要有：</p>
+
+		<ul>
+		<li><span class="text_import2">作为 WWW 的网页资料取得代理人</span>：这是最主要的功能嘛！<br><br></li>
+
+		<li><span class="text_import2">作为内部区网的单点对外防火墙系统</span>：如<a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#fig17.1-1">图 17.1-1</a> 所示一般，如果你的 
+		Proxy 是放在内部区网的 Gateway 上头，那么这部代理服务器就能够作为内部计算机的防火墙了！而且还不需要设定那复杂的 NAT 
+		功能呢！只是单纯的 Proxy 服务器通常仅提供 WWW 的代理，因此内部计算机想要取得 smtp, ftp...就比较麻烦～</li>
+		</ul>
+
+		<p>由于 Proxy 的这种特性，让他很常被使用于大型的企业内部，因为可以达到杜绝内部人员上班时使用非
+		WWW 以外的网络服务，而且还可以监测用户的资料要求流向与流量呢！很不错吧！
+		^_^！好了，接下来我们来谈一谈当你架设了 Proxy 后的优缺点吧。先来谈谈主要可能具有的优点有：</p>
+
+		<ul>
+		<li><span class="text_import2">节省单点对外的网络带宽，降低网络负载</span>：当你的 Proxy 用户很多时，那么 Proxy
+		内部的快取数据将会累积较多。因此客户端想要取得网络上的数据时，很多将会从 Proxy 的快取中取得，而不用向因特网要求资料。
+		所以可以节省带宽啊！<br><br></li>
+
+		<li><span class="text_import2">以较短的路径取得网络数据，有网络加速的感觉</span>：例如你可以指定你的 ISP
+		提供的代理服务器连接到国外，由于 ISP 提供的 Proxy 通常具有较大的对外带宽，因此在对国外网站的数据取得上，
+		通常会比你自己的主机联机到国外要快的多。此外，与上一点的快取数据也有关系啊！从内部硬盘取得的路径总比对外的因特网要短的多啊！
+		<br><br></li>
+
+		<li><span class="text_import2">透过上层代理服务器的辅助，达到自动数据分流的效果</span>：例如<a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#fig17.1-4">图 17.1-4</a>
+		所示，让客户端在不知不觉之间，就可以得到数据由不同 Proxy 取得的加速效果！<br><br></li>
+
+		<li><span class="text_import2">提供防火墙内部的计算机连上 Internet</span>：就是上面提到的单点对外防火墙功能！</li>
+		</ul>
+
+		<p>由于代理服务器的这些优点，因此这里要强烈的建议，<span class="text_import2">如果你需要连上国外的网页，
+		请一定使用 ISP 提供给你的代理服务器来帮忙，因为不但可以节省带宽，并且速度上会快上很多很多 (例如美国环保署, EPA 网站)</span>。
+		不过，有利就有弊，当然 Proxy 也不是万能的天神～他有什么可能潜藏的缺点呢？</p>
+
+		<ul>
+		<li><span class="text_import2">容易被内部区网的人员滥用</span>：我们知道因特网上看到取得资料的人是 Proxy 
+		那部主机而不是客户端计算机的 IP，因此可能会让某些内部网络使用人员开始利用你的 proxy 干坏事，此时你就会很麻烦～
+		所以，为了杜绝这个状况，强烈的建议多加登录档案分析的软件，在管理上面会轻松很多喔！<br><br></li>
+
+		<li><span class="text_import2">需要较高超的设定技巧与除错程序</span>：在鸟哥设定过的服务器当中， Proxy 
+		算是比较不容易设定好『效能』的一个服务器了！由于 Proxy 的 Cache 与他的『上层代理服务器』的关系是很紧密的，
+		万一设定错误的话，很有可能反而让你的 Proxy 拖垮客户端 WWW 的浏览速度！最严重的是造成无法联机！<br><br></li>
+
+		<li><span class="text_import2">可能会取得旧的错误数据</span>：这个最容易发生了！由于曾经浏览过的网页会被放置到快取，
+		并提供后续用户的直接取得。万一因特网上面的那个网页数据更新过呢？那时你会发现，怎么客户端无法看到更新后的资料？
+		就是因为快取的问题啊！取得旧数据的频率可能会很高啊！</li>
+		</ul>
+
+		<p>总之， Proxy 的优点是很多的，但是缺点却需要网管人员的操心啊！既然如此，那么我们到底有没有需要架设代理服务器呢？
+		简单的说，我们可以这样分析！</p>
+
+		<ul class="text_import2">
+		<li>我的 Client 端用户不少，而且大部分仅需要 WWW 这个网络服务而已；</li>
+		<li>我的 Proxy 还兼做防火墙的任务；</li>
+		<li>我的 Client 端常常需要联机到传输速度很慢的网站，例如国外的网站；</li>
+		<li>我的 Client 端常常浏览的网站是『静态』网站，而不是动态网站 (例如讨论区的 PHP)。</li>
+		</ul>
+
+		<p>如果你有上述的环境状况，那么是可以考虑架设 Proxy 的，但是，相反的来说，要是 (1)我的 Client 端很少，所以每次连上 
+		WWW 都是求取新的资料 (并没有用到快取)，有没有 Proxy 反而看不出效益～此外，(2)Proxy 由于属于应用层了，对于 
+		Internet 的规划上弹性较不足！不像 NAT 服务器可以进行很多的功能！(3)我常常上的网站是类似讨论区那种一日多变的网站，
+		在这样的情况下，实在是没有必要架设 Proxy 的！</p>
+
+		<p>但是，如果对于学校单位那原本带宽就不足的环境中，架设 Proxy 来让校内的网络速度提升，呵呵！就是有那个必要性的啦！所以要不要架设
+		Proxy 呢？请好好的依据你的环境来考虑喔！但无论如何，我们还是要教大家怎么架设它就是了 ^_^</p>
+	</div>
+</div>
+
+
+<hr><a name="server"></a><img src="./linux_server_17_squid_files/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">17.2 Proxy 服务器的基础设定</span><br>
+<div class="block1">
+	<p>虽然在我们小型的网络环境中，架设 Proxy 真的没有什么用，不过，考虑到大家未来可能会高升嘛！所以企业常用的 Proxy 也需要了解一下比较好。
+	在这个小节中，我们主要介绍一个比较简单的 Proxy 环境，就是单纯可以跑而已的代理服务器。比较高阶的设定请参考后续小节的介绍啰。<br><br></p>
+
+	<hr><a name="server_pkg"></a><img src="./linux_server_17_squid_files/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">17.2.1 Proxy 所需的 squid 软件及其软件结构</span><br>
+	<div class="block2">
+		<p>达成代理服务器功能的软件很多，例如效能不是很好的 Apache 以及我们这个章节要介绍的八爪章鱼 squid 这一套。
+		目前代理服务器在 Unix Like 的环境下，大多就是使用 squid ，因此我们这里以 squid 为准来介绍啦。同样的，
+		请使用 rpm 来检查，如果尚未安装，请用『 yum install squid 』来安装吧！安装好 squid 之后，它主要的提供的配置文件有：</p>
+
+		<ul>
+		<li><span class="text_import1">/etc/squid/squid.conf</span><br>
+		这个是主要的配置文件，所有 squid 所需要的设定都是放置在这个档案当中的！
+		鸟哥底下提到的种种设定方法几乎都是这个档案里面的说明喔！<br><br></li>
+
+		<li><span class="text_import2">/etc/squid/mime.conf</span><br>
+		这个档案则是在设定 squid 所支持的 Internet 上面的文件格式，就是所谓的 mime 格式啰！
+		一般来说，这个档案的预设内容已经能够符合我们的需求了，所以不需要更动他，除非你很清楚的知道你所需要额外支持的
+		mime 文件格式。</li>
+		</ul>
+
+		<p>其他重要的目录与档案有：</p>
+
+		<ul>
+		<li><span class="text_import1">/usr/sbin/squid</span>：提供 squid 的主程序啊！</li>
+		<li><span class="text_import1">/var/spool/squid</span>：就是默认的 squid 快取放置的目录。</li>
+		<li><span class="text_import2">/usr/lib64/squid/</span>：提供 squid
+		额外的控制模块，尤其是影响认证密码方面的程序，都是放在这个目录下的；</li>
+		</ul>
+	</div>
+
+	<hr><a name="server_default"></a><img src="./linux_server_17_squid_files/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">17.2.2 CentOS 预设的 squid 设定</span><br>
+	<div class="block2">
+		<p>在预设的情况下，CentOS 的 squid 具有底下几个特色：</p>
+
+		<ul class="text_import2">
+		<li>仅有本机 (localhost, 127.0.0.1) 来源可以使用这个 squid 功能</li>
+		<li>squid 所监听的 Proxy 服务埠口在 port 3128</li>
+		<li>快取目录所在的位置在 /var/spool/squid/ ，且仅有 100MB 的磁盘高速缓存量</li>
+		<li>除了 squid 程序所需要的基本内存之外，尚提供 8MB 的内存来给热门档案快取在内存中 (因为内存速度比硬盘还快)</li>
+		<li>默认启动 squid 程序的用户为 squid 这个账号 (与磁盘高速缓存目录权限有关)</li>
+		</ul>
+
+		<p>其实， CentOS 预设的 squid 设定，是仅针对本机 (localhost) 开放的情况，而一大堆设定的默认值，
+		都是仅针对小型网络环境所指定的数值，同时，很多比较特殊的参数都没有启动。所以，我们就得要来了解一下各设定值的意义，
+		这样才能够进行修改嘛！这些参数都是在 squid.conf 里头指定的，所以，就让我们来看看这个档案的内容与较重要的参数吧：</p>
+
+		<div style="padding: 10pt 0pt 10pt 0pt ;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color : #009000"><font size="-1">		CentOS 6.x 已经将 squid.conf 里面不相干的设定值通通拿掉了，所以这个档案就变的非常的精简！这样其实有好有坏啦！
+		好处是，你不用去看一些你用不到的参数值，坏处是，如果你想要其他的设定，就得额外参考外部文件了！伤脑筋～
+		</font></span></td><td><img src="./linux_server_17_squid_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /etc/squid/squid.conf</span>
+<span class="term_hd"># 1. 信任用户与目标控制，透过 acl 定义出 localhost 等相关用户</span>
+acl manager proto cache_object              <span class="term_note">&lt;==定义 manager 为管理功能</span>
+acl localhost <span class="term_write">src</span> 127.0.0.1/32              <span class="term_note">&lt;==定义 localhost 为本机来源</span>
+acl localhost <span class="term_write">src</span> ::1/128
+acl to_localhost <span class="term_write">dst</span> 127.0.0.0/8 0.0.0.0/32 <span class="term_note">&lt;==定义 to_localhost 可联机到本机</span>
+acl to_localhost <span class="term_write">dst</span> ::1/128
+
+<span class="term_hd"># 2. 信任用户与目标控制，定义可能使用这部 proxy 的外部用户(内网)</span>
+acl localnet src 10.0.0.0/8      <span class="term_note">&lt;==可发现底下都是 private IP 的设定</span>
+acl localnet src 172.16.0.0/12
+acl localnet src 192.168.0.0/16
+acl localnet src fc00::/7
+acl localnet src fe80::/10
+<span class="term_say"># 上述数据设定两个用户 (localhost, localnet) 与一个可取得目标 (to_localhost)</span>
+
+<span class="term_hd"># 3. 定义可取得的数据端口所在！</span>
+acl SSL_ports port 443                  <span class="term_note">&lt;==联机加密的埠口设定</span>
+acl Safe_ports port 80          # http  <span class="term_note">&lt;==公认标准的协议使用埠口</span>
+acl Safe_ports port 21          # ftp
+acl Safe_ports port 443         # https
+<span class="term_say"># 定义出 SSL_ports 及标准的常用埠口 Safe_ports 两个名称</span>
+
+<span class="term_hd"># 4. 定义这些名称是否可放行的标准依据(有顺序喔！)</span>
+http_access allow manager localhost  <span class="term_note">&lt;==放行管理本机的功能</span>
+http_access deny manager             <span class="term_note">&lt;==其他管理来源都予以拒绝</span>
+http_access deny !Safe_ports         <span class="term_note">&lt;==拒绝非正规的埠口联机要求</span>
+http_access deny CONNECT !SSL_ports  <span class="term_note">&lt;==拒绝非正规的加密埠口联机要求</span>
+<span class="term_say">&lt;==这个位置为你可以写入自己的规则的位置喔！不要写错了！有顺序之分的！</span>
+http_access allow localnet           <span class="term_note">&lt;==放行内部网络的用户来源</span>
+http_access allow localhost          <span class="term_note">&lt;==放行本机的使用</span>
+http_access deny all                 <span class="term_note">&lt;==全部都予以拒绝啦！</span>
+
+<span class="term_hd"># 5. 网络相关参数，最重要的是那个定义 Proxy 协议埠口的 http_port</span>
+http_port <span class="term_write">3128</span>     <span class="term_note">&lt;==Proxy 预设的监听客户端要求的埠口，是可以改的
+# 其实，如果想让 proxy server/client 之间的联机加密，可以改用 https_port (923)</span>
+
+<span class="term_hd"># 6. 快取与内存相关参数的设定值，尤其注意内存的计算方式</span>
+hierarchy_stoplist cgi-bin ? <span class="term_note">&lt;==hierarchy_stoplist 后面的关键词 (此例为 cgi-bin)
+# 若发现在客户端所需要的网址列，则不快取 (避免经常变动的数据库或程序讯息)</span>
+cache_mem 8 MB     <span class="term_note">&lt;==给proxy额外的内存，用来处理最热门的快取数据(需自己加)</span>
+
+<span class="term_hd"># 7. 磁盘高速缓存，亦即放置快取数据的目录所在与相关设定</span>
+<span class="term_write">cache_dir ufs /var/spool/squid 100 16 256</span> <span class="term_note">&lt;==默认使用 100MB 的容量放置快取</span>
+coredump_dir /var/spool/squid
+<span class="term_say"># 底下的四个参数得要自己加上来喔！旧版才有这样的默认值！</span>
+minimum_object_size 0 KB    <span class="term_note">&lt;==小于多少 KB 的数据不要放快取，0 为不限制</span>
+maximum_object_size 4096 KB <span class="term_note">&lt;==与上头相反，大于 4 MB 的数据就不快取到磁盘</span>
+cache_swap_low 90   <span class="term_note">&lt;==与下一行有关，减低到剩下 90% 的磁盘高速缓存为止</span>
+cache_swap_high 95  <span class="term_note">&lt;==当磁盘使用量超过 95% 就开始删除磁盘中的旧快取</span>
+
+<span class="term_hd"># 8. 其他可能会用到的默认值！参考参考即可，并不会出现在配置文件中。</span>
+access_log /var/log/squid/access.log squid <span class="term_note">&lt;==曾经使用过 squid 的用户记录</span>
+ftp_user Squid@  <span class="term_note">&lt;==当以 Proxy 进行 FTP 代理匿名登录时，使用的账号名称</span>
+ftp_passive on   <span class="term_note">&lt;==若有代理 FTP 服务，使用被动式联机</span>
+refresh_pattern ^ftp:           1440    20%     10080
+refresh_pattern ^gopher:        1440    0%      1440
+refresh_pattern -i (/cgi-bin/|\?) 0     0%      0
+refresh_pattern .               0       20%     4320
+<span class="term_note"># 上面这四行与快取的存在时间有关，底下内文会予以说明</span>
+cache_mgr root               <span class="term_note">&lt;==预设的 proxy 管理员的 email</span>
+cache_effective_user squid   <span class="term_note">&lt;==启动 squid PID 的拥有者</span>
+cache_effective_group squid  <span class="term_note">&lt;==启动 squid PID 的群组</span>
+# visible_hostname <span class="term_note">&lt;==有时由于 DNS 的问题，找不到主机名会出错，就得加上此设定</span>
+ipcache_size 1024  <span class="term_note">&lt;==以下三个为指定 IP 进行快取的设定值</span>
+ipcache_low 90
+ipcache_high 95
+</pre></td></tr></tbody></table>
+
+		<p>光是了解上述的一些基础设定值，可能就要头昏昏了，更别说 squid.conf 里面的其他设定值，看到头好昏...
+		无论如何，上述这些设定已经是很基础的设定了，你最好了解一下！除了 cache_dir 那一行取消批注，其他的保持不动！
+		让我们以默认值来直接启动 squid 看看有什么特别的地方再说。<br><br></p>
+
+		<a name="http_port"></a>
+		<ul class="list1"><li class="text_import1"><hr>使用默认值来启动 squid 并观察相关信息</li></ul>
+
+		<p>要启动 squid 真是简单，让我们来启动 squid 并且观察有没有相关的埠口吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">/etc/init.d/squid start</span>
+init_cache_dir /var/spool/squid... 正在激活 squid: .       [  确定  ]
+<span class="term_say"># 第一次启动会初始化快取目录，因此会出现上述左边的数据，未来这个讯息不会再出现</span>
+[root@www ~]# <span class="term_command">netstat -tulnp | grep squid</span>
+Proto Recv-Q Send-Q Local Address   Foreign Address   State    PID/Program name
+tcp        0      0 :::<span class="term_write">3128</span>         :::*              LISTEN   2370/(squid)
+udp        0      0 :::45470        :::*                       2370/(squid)
+[root@www ~]# <span class="term_command">chkconfig squid on</span>
+</pre></td></tr></tbody></table>
+
+		<p>如果你有设定 icp_port 时，<span class="text_import2">squid 预设会启动 3128 及 3130 两个埠口</span>，其中要注意的是，
+		实际帮用户进行监听与传送数据的是 port 3128 (TCP)，3130 (UDP) 仅是负责与邻近 Proxy 
+		互相沟通彼此的快取数据库的功能，与实际的用户要求无关。因此，如果你的 proxy
+		是单纯的单一主机，或者是单纯的作为防火墙功能，那么这个 port 3130 是可以关闭的。就因如此，所以 CentOS 6.x
+		预设将这个设定值批注不使用啰！</p>
+
+<table width="90%" border="1" cellpadding="5" cellspacing="0"><tbody><tr><td>
+例题：<div class="block2">
+由于我的 Proxy 仅是部简单的单一代理服务器，并没有架设成为公开的邻近代理服务器 (peer proxy 或 neighbor proxy)，
+因此想要关闭 port 3130 ，该如何处理？
+</div>
+答：<div class="block2">
+旧版的 CentOS 5.x 以前的版本才需要进行，很简单，直接修改 icp_port 即可！方法为：
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /etc/squid/squid.conf</span>
+<span class="term_say">#Default: VBird 2011/04/06 modified，将下列数据从 3130 改为 0 即可</span>
+<span class="term_write">icp_port 0</span>
+
+[root@www ~]# <span class="term_command">/etc/init.d/squid restart</span>
+</pre></td></tr></tbody></table>
+</div>
+</td></tr></tbody></table><br>
+
+		<p>事实上，如果你的客户端与 proxy 之间的沟通想要使用加密机制的 SSL 功能，以保障客户端的信息避免被窃取时，
+		那么还有个 https_port 可以取代 http_port ！不过，充其量我们的 proxy 并非公开也仅是架设在内部区网，
+		因此还不需要使用到这个 https_port 啦！<br><br></p>
+
+		<a name="cache_dir"></a>
+		<ul class="list1"><li class="text_import1"><hr>观察与修改快取目录 (cache_dir)：权限与 SELinux</li></ul>
+
+		<p>从前面的说明我们知道磁盘高速缓存是影响 proxy 效能的一个相当重要的参数，那么 squid 是如何将快取存进磁盘的呢？
+		squid 是将数据分成一小块一小块，然后分别放置到个别的目录中。由于较多的目录可以节省在同一个目录内找好多档案的时间
+		(想一想，分门别类的放置书籍在不同的书柜内，总比将所有书籍杂乱无章的放置到一个大书柜要好的多吧！)，
+		因此，在默认的 /var/spool/squid/ 目录下， squid 又会将它分成两层子目录来存放相关的快取数据，所以观察该目录就会是：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">ls /var/spool/squid</span>
+00  01  02  03  04  05  06  07  08  09  0A  0B  0C  0D  0E  0F  swap.state
+<span class="term_say"># 算一下，你会发现共有 16 个子目录！那么我们来看看第一个子目录的内容：</span>
+
+[root@www ~]# <span class="term_command">ls /var/spool/squid/00</span>
+00  08  10  18  20  28 <span class="term_say">...</span> 98  A0  A8  B0  B8  C0  C8  D0  D8  E0  E8  F0  F8
+01  09  11  19  21  29 <span class="term_say">...</span> 99  A1  A9  B1  B9  C1  C9  D1  D9  E1  E9  F1  F9
+<span class="term_say">....(中间省略)....</span>
+06  0E  16  1E  26  2E <span class="term_say">...</span> 9E  A6  AE  B6  BE  C6  CE  D6  DE  E6  EE  F6  FE
+07  0F  17  1F  27  2F <span class="term_say">...</span> 9F  A7  AF  B7  BF  C7  CF  D7  DF  E7  EF  F7  <span class="term_write">FF</span>
+<span class="term_say"># 看见了吗？总共有 256 个子目录出现啰！</span>
+</pre></td></tr></tbody></table>
+
+		<p>现在我们知道了较多的目录是为了将数据分门别类放置，但是第一层 16 个与第二层 256 个是怎么来的？
+		让我们来瞧一瞧 cache_dir 这个重要参数的设定是怎样：</p>
+
+		<ul><li class="text_import2" style="font-family: &#39;细明体&#39;">cache_dir ufs /var/spool/squid 100 16 256</li></ul>
+
+		<p>在 /var/spool/squid/ 后面的参数意义是：</p>
+		<ul class="text_import2">
+		<li>第一个 100 代表的是磁盘使用量仅用掉该文件系统的 100MB</li>
+		<li>第二个 16 代表第一层次目录共有 16 个</li>
+		<li>第三个 256 代表每层次目录内部再分为 256 个次目录</li>
+		</ul>
+
+		<p>根据 squid 的说法与其他文献的说明，这两层快取目录较佳的配置就是 16 256 以及 64 64 这两种配置，
+		所以我们也不需要修改相关的数据啦！重点时还得要注意这个目录的档案拥有者与 SELinux 类型才成呦！</p>
+
+<table width="90%" border="1" cellpadding="5" cellspacing="0"><tbody><tr><td>
+例题：<div class="block2">
+看起来预设的 proxy 的磁盘高速缓存应该是不够用，而之前的磁盘规划又没有做好，因此 /var/ 最多还有 500MB 可以让我们做为磁盘高速缓存。
+那么如果想要将预设的磁盘高速缓存改为 500MB 而且再加上 /srv/squid/ 目录给予 2GB 的容量做为磁盘高速缓存，该如何进行设定？
+</div>
+答：<div class="block2">
+这里都与 cache_dir 有关！这个设定值可以重复出现多次！因此，我们可以这样进行的，特别注意底下的目录权限与 SELinux 类型呦！
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /etc/squid/squid.conf</span>
+<span class="term_say">#Default: VBird 2011/04/06 modified，底下的设定除了拿掉 # 之外还得修改！</span>
+cache_dir ufs /var/spool/squid <span class="term_write">500</span> 16 256
+<span class="term_write">cache_dir ufs /srv/squid 2000 16 256</span>
+
+[root@www ~]# <span class="term_command">mkdir /srv/squid</span>
+[root@www ~]# <span class="term_command">chmod 750 /srv/squid</span>
+[root@www ~]# <span class="term_command">chown squid:squid /srv/squid</span>
+[root@www ~]# <span class="term_command">chcon --reference /var/spool/squid /srv/squid</span>
+[root@www ~]# <span class="term_command">ll -Zd /srv/squid</span>
+drwxr-x---. squid squid system_u:object_r:<span class="term_write">squid_cache_t</span>:s0 /srv/squid/
+
+[root@www ~]# <span class="term_command">/etc/init.d/squid restart</span>
+</pre></td></tr></tbody></table>
+之所以要改成 squid 拥有，是因为上头的 squid.conf 中，预设的启动 PID 的账号就是 squid 这个人物嘛！所以当然要变更！至于 SELinux 
+的类型方面，参考预设的 /var/spool/squid 就能够知道了。不过要注意，某些特定的目录 (例如 /home) 是不允许建立快取目录的，
+因此我们使用服务资料可以放置的 /srv 作为测试范例啰！
+</div>
+</td></tr></tbody></table><br>
+
+		<p>想一想，既然快取是放在磁盘上面的，那么快取的数据会不会塞满整个快取磁盘呢？当然会啊！而且当塞满磁盘之后，
+		你的 proxy 恐怕就无法继续运作了！所以，我们当然得要好好的注意磁盘使用量是否已经饱和了。在上述的例题中，
+		若 /var/spool/squid 塞满 500MB 而 /srv/squid 塞满 2GB 那么你的 proxy 就挂了。为了避免这个问题，因此
+		squid 有底下两个重要设定：</p>
+
+		<ul class="text_import2" style="font-family: &#39;细明体&#39;">
+		<li>cache_swap_low 90</li>
+		<li>cache_swap_high 95</li>
+		</ul>
+
+		<p>代表当磁盘使用量达 95% 时，比较旧的快取数据将会被删除，当删除到剩下磁盘使用量达 90% 时，就停止持续删除的动作。
+		以本案例中，总共 2.5GB 的容量，当用到 2.5*0.95=2.375G 时，旧的数据会开始被删除，删到剩下 2.5*0.9=2.25GB
+		时，就停止删除的意思。所以会被删除掉 125MB 的旧数据就是了。通常这个设定值已经足够了，不需要变动他，
+		除了你的快取太大或太小时，才会调整这个设定值。<br><br></p>
+
+		<a name="cache_mem"></a>
+		<ul class="list1"><li class="text_import1"><hr>squid 使用的内存计算方式</li></ul>
+
+		<p>事实上，除了磁盘容量之外，内存可能是另一个相当重要的影响 proxy 效能的因子！怎么说呢？因为
+		proxy 会将数据存一份在磁盘高速缓存中，但是同时也会将数据暂存在内存当中啊，以加快未来使用者存取同一份数据的速度！
+		但是这个内存快取是需要花费额外的服务器物理内存的量，所以就得要以额外的设定值来指定啰。那就是 cache_mem
+		这个设定值的功能了。</p>
+
+		<p>很多人 (包括鸟哥) 都会误会 cache_mem 的用途！其实 cache_mem 是额外的指定一些内存来进行比较『热门』的数据存取！
+		<span class="text_import2">cache_mem 并不是指我要使用多少内存给 squid 使用，而是指 "我还要额外提供多少内存给
+		squid 使用" 的意思</span>』！由于预设 1GB 的磁盘高速缓存会占用约 10M 的内存，而 squid 本身也会占用约 15MB 的内存，
+		因此，上个例题中 squid 使用掉的内存就有：</p>
+
+		<ul><li class="text_import2" style="font-family: &#39;细明体&#39;">2.5 * 10 + 15 + "cache_mem 设定值 (8)"</li></ul>
+
+		<p>squid 官方网站建议你的物理内存最好是上面数值的两倍，也就是说，上述的内存使用量已经是 48MB，
+		则我的物理内存最好至少要有 100 MB 以上，才会有比较好的效能！当然，这个单指
+		Proxy 部分而已，如果你的该部主机还有负责其他的工作，呵呵！那么内存就得在累加上去啦！一般来说，如果你的
+		Proxy 很多人使用时，这个值越大越好，但是最好也要符合上面的需求喔！</p>
+
+<table width="90%" border="1" cellpadding="5" cellspacing="0"><tbody><tr><td>
+例题：<div class="block2">
+由于我的内存够大，而 proxy 确实是我重要的服务，因此想要增加额外的 32MB 作为热门数据快取，该如何修改？
+</div>
+答：<div class="block2">
+直接做了啦！就是修改 cache_mem 而已！
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /etc/squid/squid.conf</span>
+<span class="term_say">#Default: VBird 2011/04/06 modified，将原本的 8 改为 32 啰！</span>
+<span class="term_write">cache_mem 32 MB</span>
+
+[root@www ~]# <span class="term_command">/etc/init.d/squid restart</span>
+</pre></td></tr></tbody></table>
+</div>
+</td></tr></tbody></table><br>
+	</div>
+
+	<hr><a name="server_acl"></a><img src="./linux_server_17_squid_files/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">17.2.3 管控信任来源 (如区网) 与目标 
+	(如恶意网站)： acl 与 http_access 的使用</span><br>
+	<div class="block2">
+		<p>在上面的基础设定中，其实仅有 proxy 服务器本身可以向自己的 proxy 要求网页代理～那有个屁用啊？
+		我们的重点是想要开放给区网来使用这个 proxy 的嘛！所以当然得要修改信任用户的管控参数啰。
+		此时，那个重要到不行的 acl 就得要来瞧一瞧啦！这个 acl 的基本语法为：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>acl &lt;自定义的 acl 名称&gt; &lt;要控制的 acl 类型&gt; &lt;设定的内容&gt;
+</pre></td></tr></tbody></table>
+
+		<p>由于 squid 并不会直接使用 IP 或网域来管控信任目标，而是透过 acl 名称来管理，这个 &lt;acl 名称&gt;
+		就必须要设定管理的是来源还是目标 (acl 类型) ，以及实际的 IP 或网域 (设定的内容) 啦！这个 acl 
+		名称可以想成是一个昵称就是了。那么有哪些重要的 acl 类型呢？基本上有这些：<br><br></p>
+
+		<ul class="list1"><li class="text_import1"><hr>管理是否能使用 proxy 的信任客户端方式：</li></ul>
+
+		<p>由于因特网主要有使用 IP 或主机名来作为联机方式的，因此信任用户的来源至少就有底下几种：</p>
+
+		<ul>
+		<li><span class="text_import1" style="font-family: &#39;细明体&#39;">src ip-address/netmask</span>：<br>
+		主要控制『来源的 IP 地址』。举例来说，鸟哥的内网有两个，分别是 192.168.1.0/24 以及 192.168.100.0/24 ，
+		那么假设我想要制订一个 vbirdlan 的 acl 名称，那就可以在配置文件内写成：<br><span class="text_import2" style="font-family: &#39;细明体&#39;">acl vbirdlan src 192.168.1.0/24 192.168.100.0/24</span><br><br></li>
+
+		<li><span class="text_import1" style="font-family: &#39;细明体&#39;">src addr1-addr2/netmask</span>：<br>
+		主要控制『一段范围来源的 IP 地址』。假设我只想要让 192.168.1.100-192.168.1.200 使用这部 proxy ，那么就用：<br>
+		<span class="text_import2" style="font-family: &#39;细明体&#39;">acl vbirdlan2 src 
+		192.168.1.100-192.168.1.200/24</span><br><br></li>
+
+		<li><span class="text_import1" style="font-family: &#39;细明体&#39;">srcdomain .domain.name</span>：<br>
+		如果来源用户的 IP 一直变，所以使用的是 DDNS 的方式来更新主机名与 IP 的对应，此时我们可以使用主机名来开放！
+		例如来源是 .ksu.edu.tw 的来源用户就开放使用权，那就是：<br>
+		<span class="text_import2" style="font-family: &#39;细明体&#39;">acl vbirdksu srcdomain .ksu.edu.tw</span><br><br></li>
+		</ul>
+
+		<ul class="list1"><li class="text_import1"><hr>管理是否让 proxy 帮忙代理到该目标去获取数据：</li></ul>
+
+		<p>除了管理来源用户之外，我们还能够管理是否让 proxy 服务器到某些目标去获取数据喔！在预设的设定中，
+		我们的 proxy 仅管理可以向外取得 port 21, 80, 440... 等端口的目标网站，不是这些端口就无法帮忙代理取得。
+		至于 IP 或网域则没有管理。基本的管理有这些方式：</p>
+
+		<ul>
+		<li><span class="text_import1" style="font-family: &#39;细明体&#39;">dst ip-addr/netmask</span>：<br>
+		控制不能去的目标网站的 IP ，举例来说，我们不许 proxy 去捉取 120.114.150.21 这部主机的 IP 时，可以写成是：<br>
+		<span class="text_import2" style="font-family: &#39;细明体&#39;">acl dropip dst 120.114.150.21/32</span><br><br></li>
+
+		<li><span class="text_import1" style="font-family: &#39;细明体&#39;">dstdomain .domain.name</span>：<br>
+		控制不能去的目标网站的主机名。举例来说，如果你在上课时不允许学生跑去种田还是小小战争，那就得要把
+		.facebook.com 给关闭！那就需要写成：<br>
+		<span class="text_import2" style="font-family: &#39;细明体&#39;">acl dropfb dstdomain .facebook.com</span><br><br></li>
+
+		<li><span class="text_import1" style="font-family: &#39;细明体&#39;">url_regex [-i] ^http://url</span>：<br>
+		使用正规表示法来处理网址列的一种方式！这种方式的网址列必须要完整的输入正规表示法的开始到结尾才行。
+		举例来说，昆山科大的中文网页写法为 (并非部分比对，所以最结尾的 .* 记得要加上去！)：<br>
+		<span class="text_import2" style="font-family: &#39;细明体&#39;">acl ksuurl url_regex 
+		^http://www.ksu.edu.tw/cht/.*</span><br><br></li>
+
+		<li><span class="text_import1" style="font-family: &#39;细明体&#39;">urlpath_regex [-i] \.gif$</span>：<br>
+		与上一个 acl 非常类似，只是上一个需要填写完整的网址数据，这里则是根据网址列的部分比对来处置。以上述的预设案例来说，
+		只要网址列结尾是 gif (图片文件) 就符合这个项目了。万一我要找出有问题的色情网站，有出现 /sexy 名称并以 jpg 结尾的，
+		就予以抵挡，那就是使用：<br>
+		<span class="text_import2" style="font-family: &#39;细明体&#39;">acl sexurl urlpath_regex /sexy.*\.jpg$</span></li>
+		</ul>
+
+		<p>除了上述的功能之外，我们还能够使用外部的档案来提供相对应的 acl 内容设定值喔！
+		举例来说，假设我们想要抵挡的外部主机名常常会变动，那么我们可以使用 /etc/squid/dropdomain.txt 来设定主机名，
+		然后透过底下的方式来处理</p>
+		<pre style="color: #000088">acl dropdomain dstdomain "/etc/squid/dropdomain.txt"</pre>
+		<p>然后在 dropdomain.txt 当中，一行一个待管理的主机名，这样也能够减少持续修改 squid.conf 的困扰！
+		好了！了解了 acl 之后，接下来得要谈谈 http_access 这个实际放行或拒绝的参数了！<br><br></p>
+
+		<a name="http_access"></a>
+		<ul class="list1"><li class="text_import1"><hr>以 http_access 调整管理信任来源与管控目标的『顺序』：</li></ul>
+
+		<p>设定好 acl 之后，接下来就是要看看到底要不要放行喔～放行与否跟 http_access 这个项目有关。基本上，
+		http_access 就是拒绝 (deny) 与允许 (allow) 两个控件目，然后再加上 acl 名称就能够达到这样的功能了！
+		只是你得要特别注意的是：<span class="text_import2">http_access 后面接的数据，是有顺序的！</span>这个观念很重要喔！
+		我们用底下的案例来说明好了：</p>
+
+		<p>假设我要放行内部网络 192.168.1.0/24, 192.168.100.0/24 这两段网域，然后拒绝对外的色情相关图片，
+		以及 facebook.com 网站，那么就应该要这样做：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /etc/squid/squid.conf</span>
+<span class="term_say"># http_access 是有顺序的，因此建议你找到底下这个关键词行后，将你的资料加在后面</span>
+# INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS
+<span class="term_write">acl vbirdlan src 192.168.1.0/24 192.168.100.0/24
+acl dropdomain dstdomain .facebook.com
+acl dropsex urlpath_regex /sexy.*jpg$
+http_access deny dropdomain  <span class="term_note">&lt;==这三行的『顺序』很重要！</span>
+http_access deny dropsex
+http_access allow vbirdlan</span>
+
+[root@www ~]# <span class="term_command">/etc/init.d/squid restart</span>
+</pre></td></tr></tbody></table>
+
+		<p>你得要注意，如果先放行了 vbirdlan 才抵挡 dropdomain 时，你的设定可能会失败！因为内网已经先放行，
+		因此后面的规则不会比对，那么 facebook.com 就无法被抵挡了！这点得要很注意才行！
+		<span class="text_import2">通常的作法是，先将要拒绝的写上去，然后才写要放行的数据就好了</span>。</p>
+	</div>
+
+	<hr><a name="server_other"></a><img src="./linux_server_17_squid_files/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">17.2.4 其他额外的功能项目</span><br>
+	<div class="block2">
+		<ul class="list1"><li class="text_import1"><hr>不要进行某些网页的快取动作</li></ul>
+
+		<p>从前面的说明我们知道 Proxy 的快取通常在记录比较少变动的数据，如果是讨论区或者是程控类的数据库型态网页，
+		那么恐怕就没有快取的需要，因为数据一直变动嘛！你总不希望你发了一帖留言，结果等一下再去浏览时，看到的还是旧留言吧！
+		所以啰，在预设的情况下，squid 已经拒绝某些数据的快取了，那就是底下的几个设定值：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>acl QUERY urlpath_regex cgi-bin \?
+cache deny QUERY  <span class="term_note">&lt;==重点就是这一行！可以拒绝，不要让后面的 URL 被快取！</span>
+</pre></td></tr></tbody></table>
+
+		<p>我们知道通常 .php 结尾的网页大部分就是讨论区之类的变动性数据，那么能不能出现 .php 结尾的网页就不要快取呢？
+		当然可以啊！那该如何进行？我们以上面的数据来照样造句一下吧！</p>
+
+<table width="90%" border="1" cellpadding="5" cellspacing="0"><tbody><tr><td>
+例题：<div class="block2">
+只要网址列出现 .php 结尾的，就不予以快取！
+</div>
+答：<div class="block2">
+透过 acl 配合 cache 这两个参数来处理即可！
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /etc/squid/squid.conf</span>
+<span class="term_write">acl denyphp urlpath_regex \.php$
+cache deny denyphp</span>
+<span class="term_say"># 在此档案的最后新增这两行即可！</span>
+
+[root@www ~]# <span class="term_command">/etc/init.d/squid restart</span>
+</pre></td></tr></tbody></table>
+</div>
+</td></tr></tbody></table><br>
+
+		<ul class="list1"><li class="text_import1"><hr>磁盘中快取的存在时间</li></ul>
+
+		<p>还记得底下的设定值吗？这个设定值的参数是这样设定的：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre># refresh_pattern &lt;regex&gt;   &lt;最小时间&gt; &lt;百分比&gt; &lt;最大时间&gt;
+refresh_pattern ^ftp:           1440    20%     10080
+refresh_pattern ^gopher:        1440    0%      1440
+refresh_pattern -i (/cgi-bin/|\?) 0     0%      0
+refresh_pattern .               0       20%     4320
+</pre></td></tr></tbody></table>
+
+		<ul>
+		<li>regex：使用的是正规表示法来分析网址列的资料，如上面第一行设定为网址列开头是 ftp 的意思。<br><br></li>
+		<li>最小时间：单位是分钟，当取得这个数据的时间超过这个设定值，则该数据会被判定为旧资料。如上面第一行，
+		表示当取得的资料超过 1440 分钟时，该资料会被判定为旧数据，若有人尝试读取同样的网址列，那么 squid 
+		会重新抓取该数据，不会使用快取内的旧数据。至于第三行，则表示除了上述的两个开头数据外，其他的数据都是被定义为新的，
+		因此 squid 只会从快取内抓数据给客户端。<br><br></li>
+		<li>百分比：这个项目与『最大时间』有关，当该资料被抓取到快取后，经过最大时间的多少百分比时，该数据就会被重抓。<br><br></li>
+		<li>最大时间：与上一个设定有关，就是这个数据存在快取内的最长时间。如上面第一行，最大时间为 10080 分钟，但是当超过此时间的
+		20% (2016分钟) 时，这个数据也会被判定为旧资料。</li>
+		</ul>
+
+<table width="90%" border="1" cellpadding="5" cellspacing="0"><tbody><tr><td>
+例题：<div class="block2">
+在网址列出现 .vbird. 字样时，该数据为暂时使用的，因此 2 小时后就算旧数据。而最长保留在快取给她一天的时间，
+且经过 50% 的时间后，就被判定为旧数据吧！
+</div>
+答：<div class="block2">
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /etc/squid/squid.conf</span>
+refresh_pattern ^ftp:           1440    20%     10080
+refresh_pattern ^gopher:        1440    0%      1440
+refresh_pattern -i (/cgi-bin/|\?) 0     0%      0
+<span class="term_write">refresh_pattern \.vbird\.       120     50%     1440</span>
+refresh_pattern .               0       20%     4320
+
+[root@www ~]# <span class="term_command">/etc/init.d/squid restart</span>
+</pre></td></tr></tbody></table>
+</div>
+</td></tr></tbody></table><br>
+
+		<ul class="list1"><li class="text_import1"><hr>主机名与管理员的 email 指定</li></ul>
+
+		<p>如果你的服务器主机名尚未决定，因此使用的主机名在因特网上面是找不到对应的 IP 的 (因为 DNS 未设定)，
+		那么在预设的 squid 设定中，恐怕会无法顺利的启动。此时你可以手动的加入一个主机名，就是透过 visible_hostname 来指定。
+		同时，如果客户端使用 squid 出现任何错误时，屏幕上都会出现管理员的 email 让用户可以回报。现在假设主机名为
+		www.centos.vbird 且管理员的 email 为 dmtsai@www.centos.vbird ，此时我们可以这样修改：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /etc/squid/squid.conf</span>
+cache_mgr dmtsai@www.centos.vbird  <span class="term_note">&lt;==管理员的 email 呦！</span>
+visible_hostname www.centos.vbird  <span class="term_note">&lt;==直接设定主机名喔！</span>
+
+[root@www ~]# <span class="term_command">/etc/init.d/squid restart</span>
+</pre></td></tr></tbody></table>
+	</div>
+
+	<hr><a name="server_security"></a><img src="./linux_server_17_squid_files/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">17.2.5 安全性设定：防火墙, SELinux 
+	与黑名单档案</span><br>
+	<div class="block2">
+
+		<ul class="list1"><li class="text_import1"><hr>防火墙得要放行 tcp 的 port 3128 </li></ul>
+
+		<p>现在我们已经设定了让 192.168.100.0/24 及 192.168.1.0/24 这两段来源使用我们的 proxy server ，
+		那么想当然尔，防火墙的设定就得要开放这两段使用 port 3128 才行啊！不过你得要特别注意，并不是开放防火墙就能使用
+		proxy server 的资源，还得要使用 acl 配合 http_access 才行呦！注意注意！假设你已经使用了 iptables.rule ，
+		那么修改的方法就是这样：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /usr/local/virus/iptables/iptables.allow</span>
+iptables -A INPUT -i $EXTIF -p tcp -s 192.168.1.0/24 --dport 3128 -j ACCEPT
+<span class="term_say"># 因为内网 192.168.100.0/24 本来就是全部都接受放行的！</span>
+
+[root@www ~]# <span class="term_command">/usr/local/virus/iptables/iptables.rule</span>
+</pre></td></tr></tbody></table>
+
+		<ul class="list1"><li class="text_import1"><hr>SELinux 的注意事项</li></ul>
+
+		<p>针对 proxy 来说，CentOS 6.x 倒是没有给予太多的规则限制，因此似乎不太需要修订规则。不过，SELinux 
+		的安全本文在类型部分得注意。这包括配置文件 (/etc/squid/ 内的数据) 类型是 squid_conf_t 的样式，
+		而快取目录的类型则是 squid_cache_t 的类型，且上层类型 (/var/spool/) 应该是要成为 var_t 之类的才行。
+		修改的方法就是透过 chcon 来处理即可。<br><br></p>
+
+		<ul class="list1"><li class="text_import1"><hr>建立黑名单配置文件</li></ul>
+
+		<p>我们在 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#http_access">17.2.3</a> 小节里面谈到，可以透过『 dstdomain .domain.name 』来抵挡不想联机的网站。
+		不过每次都得使用 root 身份来设定 squid.conf 才行。那有没有办法额外处理出一个档案，让想要拒绝联机的数据写入，
+		这样比较容易管理，不需要一直去修改 squid.conf 嘛！有没有办法可以达成呢？有的，就透过特定档案来处置即可。
+		看看底下这个例题来修订一下吧：</p>
+
+<table width="90%" border="1" cellpadding="5" cellspacing="0"><tbody><tr><td>
+例题：<div class="block2">
+建立一个名为 /etc/squid/dropdomain.txt 的档案，内容为拒绝联机的目标网站。
+</div>
+答：<div class="block2">
+我们之前设定过相关的网站，处理的方法是直接将主机名写入 squid.conf 中，现在我们可以这样修订：
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /etc/squid/squid.conf</span>
+<span class="term_say"># 找到底下的数据，就是 dropdomain 那行，约在 629 行左右，并且修改一下</span>
+<span class="term_write">acl dropdomain dstdomain "/etc/squid/dropdomain.txt"</span>
+<span class="term_say"># 注意一下，如果是档名，请写绝对路径，且使用双引号或单引号圈起来！</span>
+
+[root@www ~]# <span class="term_command">vim /etc/squid/dropdomain.txt</span>
+<span class="term_write">.facebook.com
+.yahoo.com</span>
+<span class="term_say"># 一行一个 domain 名称即可</span>
+
+[root@www ~]# <span class="term_command">/etc/init.d/squid reload</span>
+</pre></td></tr></tbody></table>
+</div>
+</td></tr></tbody></table>
+
+		<p>这个方法的好处是，你可以使用额外的控制方式去修改 /etc/squid/dropdomain.txt 这个档案的内容，
+		并且修改完毕后再使用 reload 去加载配置文件，不必要重新启动 (restart)，因为 reload 的速度比较快速。
+		举例来说，鸟哥的专题生就用 PHP 写了一支控制该档案的网页接口，可以让老师在上课时直接透过网页输入要被控制的目标网站，
+		这样学生就无法在上课时联机到外面的某些网站去玩游戏啰～</p>
+	</div>
+</div>
+
+
+<hr><a name="client"></a><img src="./linux_server_17_squid_files/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">17.3 客户端的使用与测试</span><br>
+<div class="block1">
+	<p>既然 proxy 是给浏览器用的，那么自然在浏览器上面就需要设定一些参数啰！那么如何设定呢？由于不同的浏览器在设定 
+	Proxy 的地方也都不同，所以底下我们介绍目前比较常见的两款浏览器，分别是 firefox 以及 IE 
+	的设定，至于其他的浏览器，请参考各浏览器的相关说明啊！<br><br></p>
+
+	<hr><a name="client_browser"></a><img src="./linux_server_17_squid_files/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">17.3.1 浏览器的设定： firefox &amp; IE</span><br>
+	<div class="block2">
+		<ul class="list1"><li class="text_import1"><hr>firefox 5.x 的设定示意</li></ul>
+
+		<p>要在 firefox 5.X 上面设定好 proxy 基本步骤是这样的：首先打开 firefox 软件，出现如下的图标后，点选：『工具』内的『选项』，
+		示意画面如下所示：</p>
+
+		<center><img src="./linux_server_17_squid_files/client_firefox_01.gif" alt="在 firefox 上头设定 proxy 的流程" title="在 firefox 上头设定 proxy 的流程" border="1"><br>
+		图 17.3-1、在 firefox 上头设定 proxy 的流程<br></center>
+
+		<p>然后在出现的如下画面中，先选择右上方的『进阶』项目，然后点选『网络』页面，最后再点选联机的『设定』按钮，
+		如下图所示，依序来动作：</p>
+
+		<center><img src="./linux_server_17_squid_files/client_firefox_02.gif" alt="在 firefox 上头设定 proxy 的流程" title="在 firefox 上头设定 proxy 的流程" border="1"><br>
+		图 17.3-2、在 firefox 上头设定 proxy 的流程<br></center>
+
+		<p>此时就会出现如下图所示的要你输入代理服务器的相关数据。请先点选『手动设定』之后才能够填写底下的方格。
+		填上我们服务器的 IP (鸟哥的案例中，使用的是 192.168.1.100 这一部) 以及埠口，然后鸟哥建议你也可以勾选『所有通讯协议都用此 proxy
+		』的项目，都设定妥当后，才按下确定。如下图所示的流程：</p>
+
+		<center><img src="./linux_server_17_squid_files/client_firefox_03.gif" alt="在 firefox 上头设定 proxy 的流程" title="在 firefox 上头设定 proxy 的流程" border="1"><br>
+		图 17.3-3、在 firefox 上头设定 proxy 的流程<br></center>
+
+		<p>这样就设定好 firefox 的 proxy 相关数据了，有够简单吧！<br><br></p>
+
+		<ul class="list1"><li class="text_import1"><hr>IE 的设定示意</li></ul>
+
+		<p>那么 IE 要怎么设定呢？也是很简单啦！首先，打开 IE 软件，你会看到如下的示意图，点选『工具』内的『因特网选项』，
+		流程如下所示：</p>
+
+		<center><img src="./linux_server_17_squid_files/client_ie_01.gif" alt="在 IE 上头设定 proxy 的流程" title="在 IE 上头设定 proxy 的流程" border="1"><br>
+		图 17.3-4、在 IE 上头设定 proxy 的流程<br></center>
+
+		<p>在接下来的窗口中，点选『联机』的页面，然后按下『局域网络设定』的按钮。流程如下所示：</p>
+
+		<center><img src="./linux_server_17_squid_files/client_ie_02.gif" alt="在 IE 上头设定 proxy 的流程" title="在 IE 上头设定 proxy 的流程" border="1"><br>
+		图 17.3-5、在 IE 上头设定 proxy 的流程<br></center>
+
+		<p>最后就是要输入正确的 proxy server 的 IP 与 port 的相关数据啊！如下图所示，先点选箭头 1 所指定的项目，然后才能够开始填写正确数据。
+		一般来说，近端网址 (例如区网的服务器) 可以不透过 proxy 去捉取数据，因此这里可以勾选箭头三所示意的方框喔！
+		这样就设定完毕。</p>
+
+		<center><img src="./linux_server_17_squid_files/client_ie_03.gif" alt="在 IE 上头设定 proxy 的流程" title="在 IE 上头设定 proxy 的流程" border="1"><br>
+		图 17.3-6、在 IE 上头设定 proxy 的流程<br></center>
+
+		<p>接下来让鸟哥用 firefox 来测试一下，如果你要连的网站是被拒绝的会如何？</p>
+	</div>
+
+	<hr><a name="client_error"></a><img src="./linux_server_17_squid_files/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">17.3.2 测试 proxy 失败的画面</span><br>
+	<div class="block2">
+		<p>开始利用你的浏览器来浏览各个网站，基本上你都会发现正确的网站内容。但如果你要连的网站是刚刚被拒绝的呢？
+		举例来说，刚刚我们有设定拒绝连向 .yahoo.com 的喔！那么如果你真的输入网址是 tw.yahoo.com，那屏幕上应该是会这样输出的！</p>
+
+		<center><img src="./linux_server_17_squid_files/client_firefox_04.gif" alt="联机被 proxy 拒绝时的反应情况" title="联机被 proxy 拒绝时的反应情况" border="1"><br>
+		图 17.3-7、联机被 proxy 拒绝时的反应情况<br></center>
+
+		<p>从上图我们可以发现，目标网站是 tw.yahoo.com，然后产生问题的地方在于『 存取被拒绝 (Access Denied) 』，表示问题的发生在于
+		proxy 的设定，然后系统还很好心的告诉你管理员 (cache administrator) 的 email ，让你有问题可以回报给他。
+		最后，这个信息是否为新的？底下还会告诉你这个错误发生的时间点呢！这样有没有很清楚啊？ ^_^！
+		proxy 的错误不只是这些，因此，当你还有发现无法联机的网站时，请务必要看看屏幕的输出信息才好呦！</p>
+	</div>
+</div>
+
+
+<hr><a name="adv"></a><img src="./linux_server_17_squid_files/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">17.4 服务器的其他应用设定</span><br>
+<div class="block1">
+	<p>除了基本的 proxy 设定之外，如果你还有其他可供利用的上层代理服务器，说不定我们就能够设计一下如何进行分流的动作了！
+	此外，如果针对信任用户来说，难道得要一直使用 acl 直接指定用户来源然后再用 http_access 放行？有没有认证功能啊？
+	这样就不用一直修改设定啊！这些其它的应用设定在这个小节来谈谈吧！<br><br></p>
+
+	<hr><a name="adv_parent"></a><img src="./linux_server_17_squid_files/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">17.4.1 上层 Proxy 
+	与获取数据分流的设定</span><br>
+	<div class="block2">
+		<p>能够找到的上层 proxy 服务器我们在 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#theory_parent_proxy">17.1.3</a> 里面谈过了，你可以重新回去瞧瞧。
+		不过，假设你所在的环境并没有上层代理服务器，但是你有两部 Linux 主机放置在不同的 ISP 环境下，
+		这两个 ISP 对某些国外的带宽流量不同，所以你想要根据这样的情况来设计一下获取 WWW 网页的分流时，可以怎么做？
+		我们举个例子来说好了：</p>
+
+		<ul>
+		<li>hinet.centos.vbird：这部主机位于 hinet 这个 ISP 底下，对大陆 (.cn) 的流量比较高，作为上层代理服务器之用；</li>
+		<li>www.centos.vbird：这部主机位于学术网络 (昆山科大)，因为对大陆带宽被限制，因此浏览速度相对较慢。</li>
+		</ul>
+
+		<p>现在我们规划 hinet.centos.vbird 是上层代理服务器，因此这部主机得要开放 www.centos.vbird 这部机器的使用权，
+		这动作包括： <span class="text_import2">(1)利用 acl srcdomian 等方式放行 www.centos.vbird 的使用权；
+		(2)开放 www.centos.vbird 的 port 3128 的防火墙过滤功能</span>。如此一来，我们这部 www.centos.vbird 
+		才能够使用上层代理服务器喔！也就是说，这两部主机都要是你能够掌握的才行 (至少也要上层 ISP 能够替你开放使用权啦)。</p>
+
+		<p>那么 www.centos.vbird 要如何设定呢？基本上，设定上层代理服务器与分流的参数主要有： cache_peer, cache_peer_domain,
+		cache_peer_access 等，分别说明语法如下：<br><br></p>
+
+		<ul class="list1"><li class="text_import1"><hr>cache_peer 的相关语法</li></ul>
+
+<table class="term"><tbody><tr><td class="term"><pre>cache_peer [上层proxy主机名] [proxy角色] [proxy port] [icp port] [额外参数]
+</pre></td></tr></tbody></table>
+
+		<p>这个设定值就是在规范上层代理服务器在哪里，以及我们想要对这部代理服务器如何查询的相关设定值。</p>
+
+		<ul style="padding-left: 25px">
+		<li>上层 proxy 主机名：例如本案例中就是 hinet.centos.vbird 这一部啰；</li>
+		<li>proxy 角色：这部 proxy 是我们的上层 (parent) ？还是作为我们邻近 (sibling) 的协力运作的 proxy ？
+		因为我们要利用上层去捉取数据，因此经常使用的是 parent 这个角色值；</li>
+		<li>proxy port：通常就是 3128 嘛！</li>
+		<li>icp port：通常就是 3130 嘛！</li>
+		<li>额外参数：针对这部上层 proxy 我们想要对它进行的查询数据的行为设定。主要有：
+			<ul>
+			<li>proxy-only：向上层 proxy 要到的数据不会快取到本地的 proxy 服务器内，降低本地 proxy 负担；</li>
+			<li>wieght=n：权重的意思，因为我们可以指定多部上层 Proxy 主机，哪一部最重要？就可以利用这个 weight 
+			来设定，n 越大表示这部 Proxy 越重要</li>
+			<li>no-query：如果向上层 Proxy 要求资料时，可以不需要发送 icp 封包，以降低主机的负担</li>
+			<li>no-digest：表示不向附近主机要求建立 digest 纪录表格</li>
+			<li>no-netdb-exchange：表示不向附近的 Proxy 主机送出 imcp 的封包要求 </li>
+			</ul></li>
+		</ul>
+
+		<ul class="list1"><li class="text_import1"><hr>cache_peer_domain 的相关语法</li></ul>
+
+<table class="term"><tbody><tr><td class="term"><pre>cache_peer_domain [上层proxy主机名] [要求的领域名]
+</pre></td></tr></tbody></table>
+
+		<p>这个设定值的意思是说，你想要使用这部上层代理服务器向哪个领域名要求数据。</p>
+
+		<ul class="list1"><li class="text_import1"><hr>cache_peer_access 的相关语法</li></ul>
+
+<table class="term"><tbody><tr><td class="term"><pre>cache_peer_access [上层proxy主机名] [allow|deny] [acl名称]
+</pre></td></tr></tbody></table>
+
+		<p>与 cache_peer_domain 相当类似，只是 cache_peer_domain 直接规范了主机名 (domain name)，
+		而如果你想要设计的并非领域名，而是某些特定的 IP 网段时，就得要先用 acl 设计一个名称后，
+		再以这个 cache_peer_access 去放行 (allow) 或拒绝 (deny) 读取了。</p>
+
+		<p>根据上述的语法说明，那么我们想要达到 .cn 使用 hinet.centos.vbird 这部服务器的代理功能时，
+		应该要这样设计的：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /etc/squid/squid.conf</span>
+<span class="term_write">cache_peer hinet.centos.vbird parent 3128 3130 proxy-only no-query no-digest
+cache_peer_domain hinet.centos.vbird .cn</span>
+
+[root@www ~]# <span class="term_command">/etc/init.d/squid reload</span>
+</pre></td></tr></tbody></table>
+
+		<p>如果你还有其它的需求再利用 acl 规范了目标位置后，再以 cache_peer_access 去放行吧！
+		如此一来，你的 proxy server 就是一部会主动的依据不同的要求向不同的上层服务器求取数据的聪明 proxy 啰！</p>
+	</div>
+
+	<hr><a name="adv_transparent"></a><img src="./linux_server_17_squid_files/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">17.4.2 Proxy 服务放在 NAT 
+	服务器上：通透式代理 (Transparent Proxy)</span><br>
+	<div class="block2">
+		<p>从上面的说法来看，我们可以发现 proxy 可以做到类似防火墙的功能 (acl dst, acl dstdomain 再配合 http_access 处理)，
+		但是，我们也知道浏览器得要设定好 proxy 之后，才会真的使用 proxy 嘛！那就不就是在耍宝用的防火墙吗？
+		只要你的用户知道不要设定 proxy 就可以躲过你的管控，那这部 proxy 防火墙有啥屁用啊？您说是吧？</p>
+
+		<p>那该如何强制使用者一定要使用你的 proxy 呢？很简单！那就是： <span class="text_import2">
+		(1)在对外的防火墙服务器 (NAT) 上面安装 proxy； (2)在 proxy 上头启动 transparent 功能； (3) NAT 服务器加上一条
+		port 80 转 port 3128 的规则</span>，如此一来，所有往 port 80 的封包就会被你的 NAT 转向 port 3128 ，
+		而你的 port 3128 就是  proxy ，那大家就得要用你的 proxy ，而且重点是，浏览器不需要进行任何设定！</p>
+
+		<p>呵呵！也就是说，当使用者是经过 NAT 服务器联机出去时，只要让 NAT 服务器发现『咦！你是要去捉
+		WWW 的资料对吧！好！那么这个动作由 Proxy 服务帮你搞定！』如此一来，使用者根本就不需要在浏览器上面设定
+		Proxy 的相关数据，因为这个动作是『由 NAT 服务器自己决定的』，所以只要在 NAT
+		服务器上面设定妥当即可，使用者不必设定任何数据呢！呵呵！真是不错！而且进行的动作非常简单！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 设定 proxy 成为通透式代理服务器的功能！</span>
+[root@www ~]# <span class="term_command">vim /etc/squid/squid.conf</span>
+http_port 3128  <span class="term_write">transparent</span>
+<span class="term_say"># 找到 3128 这行后，在最后面加上 transparent 即可</span>
+
+[root@www ~]# <span class="term_command">/etc/init.d/squid reload</span>
+</pre></td></tr></tbody></table>
+
+		<p>接下来，将来自 192.168.100.0/24 这个内网的来源，只要是要求 port 80 的，就将它重新导向 port 3128 的方式为：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /usr/local/virus/iptables/iptables.rule</span>
+<span class="term_write">iptables -t nat -A PREROUTING -i $INIF -s 192.168.100.0/24 -p tcp \
+         --dport 80 -j REDIRECT --to-ports 3128</span>
+<span class="term_say"># 将上述这一行加在最底下 /etc/init.d/iptables save 的上面一行即可！</span>
+
+[root@www ~]# <span class="term_command">/usr/local/virus/iptables/iptables.rule</span>
+</pre></td></tr></tbody></table>
+
+		<p>这样就结束啦！很简单吧！通常这样的环境相当适合学校内的教室或者是计中的环境，
+		因为这样学校内部根本不需要请学生设定浏览器的 proxy 功能，立刻就能够达到我们所需要的管控能力！很棒吧！
+		不过，虽然这样的功能已经很棒了，但是鸟哥实际用在学校教室环境中却发现了一些问题，
+		那就是很多同学同时上传同一个档案到外部服务器去，因为 proxy 快取的功能，结果让学生一直取得旧的档案，
+		对于教网页制作的老师来说，很困扰～因为教学过程中常常需要上传最新的网页嘛！但是 proxy 快取住，
+		所以却得到错误的数据了～那怎办？<br><br></p>
+
+		<ul class="list1"><li class="text_import1"><hr>仅具有 proxy 无快取功能的代理</li></ul>
+
+		<p>既然我们这个 transparent proxy 的目的仅是在进行控管，并不要去处理快取的任务 (因为带宽假设是够的)，
+		那么干脆就不要快取啦！这样不就 OK 啦？好吧！那我们就来搭配 transparent 进行这个设定看看。
+		假设 transparent proxy 已经设定妥当，那么接下来就是让你的快取目录空空如也，且再也不写入任何资料。
+		此外，也不要有多余的内存来记录热门档案啦！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 先关闭 squid ，然后删除快取目录，之后再重建快取目录，此时快取目录就空了</span>
+[root@www ~]# <span class="term_command">/etc/init.d/squid stop</span>
+[root@www ~]# <span class="term_command">rm -rf /var/spool/squid/*</span>
+[root@www ~]# <span class="term_command">vim /etc/squid/squid.conf</span>
+<span class="term_write">cache_dir ufs /var/spool/squid 100 16 256 <u>read-only</u>
+#cache_dir ufs /srv/squid 2000 16 256</span>
+<span class="term_say"># 额外的那个 /srv/squid 批注掉，然后第一行多个 read-only 字样！</span>
+<span class="term_write">cache_mem 0 MB</span>
+<span class="term_say"># 本来规范有 32MB ，现在不要了！</span>
+
+[root@www ~]# <span class="term_command">/etc/init.d/squid start</span>
+</pre></td></tr></tbody></table>
+
+		<p>如此一来，这部 proxy 就再也没有快取了，全部资料都得要自己向外头捉取！就不会有旧数据重复出现的问题～</p>
+	</div>
+
+	<hr><a name="adv_auth"></a><img src="./linux_server_17_squid_files/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">17.4.3 Proxy 的认证设定</span><br>
+	<div class="block2">
+		<p>既然 proxy 有许多功用，包括分流的功能，很不赖啊！但是，由于网络闲人越来越多，因此 proxy 不可以设计为 open
+		proxy ！亦即是不能够开放所有的人使用你的 proxy 啦！所以，一般来说， proxy 只会开放内部网域的人们来使用而已。
+		问题是，如果我在 Internet 也想要使用这部自己架设的 proxy 时，该如何是好？还得要再次的修改 squid.conf 吗？
+		有没有这么麻烦？</p>
+
+		<p>没关系啦！为了这个问题， squid 官方软件已经给予了认证的设定功能！意即我们可以透过认证来简单的输入账号密码，
+		若通过验证，就可以立刻使用我们的 proxy 了！这样就好多啦！那如何达成呢？其实 squid 提供很多认证功能，
+		我们需要的是最简单的功能即可。使用的是 squid 主动提供的 ncsa_auth 认证模块，这个模块会利用 apache (WWW 服务器)
+		提供的帐密建立指令 (htpasswd) 所制作的密码文件作为验证依据。所以，我们至少需要检查有没有这两样东西：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -ql squid | grep ncsa</span>
+/usr/lib64/squid/ncsa_auth    <span class="term_note">&lt;==有的！就是这个验证模块档案！注意完整路径</span>
+/usr/share/man/man8/ncsa_auth.8.gz
+
+[root@www ~]# <span class="term_command">yum install httpd</span>   <span class="term_note">&lt;==apache 软件安装</span>
+[root@www ~]# <span class="term_command">rpm -ql httpd | grep htpasswd</span>
+/usr/bin/htpasswd           <span class="term_note">&lt;==就是需要这个帐密建立指令！</span>
+/usr/share/man/man1/htpasswd.1.gz
+</pre></td></tr></tbody></table>
+
+		<p>这样的事前准备就差不多了。让我们来考虑一个案例好了：</p>
+
+		<ul>
+		<li>内部网域 192.168.100.0/24 要使用 proxy 的，还是不需要透过验证；</li>
+		<li>外部主机想要使用 proxy (例如 192.168.1.0/24 这段) 才需要验证；</li>
+		<li>使用 NCSA  的基本身份验证方式，且密码文件建立在 /etc/squid/squid_user.txt </li>
+		<li>上述档案仅有一个用户 vbird ，他的密码为 1234</li>
+		</ul>
+
+		<p>那该如何处理呢？开始来一步一步进行吧：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 先修改 squid.conf 档案内容</span>
+[root@www ~]# <span class="term_command">vim /etc/squid/squid.conf</span>
+<span class="term_hd"># 1.1 先设定验证相关的参数</span>
+auth_param basic program <span class="term_write">/usr/lib64/squid/ncsa_auth /etc/squid/squid_user.txt</span>
+auth_param basic children <span class="term_write">5</span>
+auth_param basic realm <span class="term_write">Welcome to VBird's proxy-only web server</span>
+<span class="term_say"># 非特殊字体为关键词不可更动，第一行为透过 ncsa_auth 读取 squid_user.txt 密码
+# 第二行为启动 5 个程序 (squid 的子程序) 来管理验证的需求；
+# 第三行为验证时，显示给用户看的欢迎讯息，这三行可写在最上面！</span>
+
+<span class="term_hd"># 1.2 然后是针对验证功能放行与否的 acl 与 http_access 设定</span>
+<span class="term_write">acl vbirdlan src 192.168.100.0/24</span>  <span class="term_note">&lt;==修改一下，取消 192.168.1.0/24</span>
+acl dropdomain dstdomain "/etc/squid/dropdomain.txt"
+acl dropsex urlpath_regex /sexy.*jpg$
+<span class="term_write">acl squid_user proxy_auth REQUIRED</span> <span class="term_note">&lt;==建立一个需验证的 acl 名称</span>
+http_access deny dropdomain
+http_access deny dropsex
+http_access allow vbirdlan
+<span class="term_write">http_access allow squid_user</span>       <span class="term_note">&lt;==请注意这样的规则顺序喔！验证在最后</span>
+
+<span class="term_hd"># 2. 建立密码数据</span>
+[root@www ~]# <span class="term_command">htpasswd -c /etc/squid/squid_user.txt vbird</span>
+New password:
+Re-type new password:
+Adding password for user vbird
+<span class="term_say"># 第一次建立才需要加上 -c 的参数，否则不需要加上 -c 喔！</span>
+
+[root@www ~]# <span class="term_command">cat /etc/squid/squid_user.txt</span>
+vbird:vRC9ie/4E21c.  <span class="term_note">&lt;==这就是用户与密码啰！</span>
+
+[root@www ~]# <span class="term_command">/etc/init.d/squid restart</span>
+</pre></td></tr></tbody></table>
+
+		<p>比较需要注意『acl squid_user proxy_auth REQUIRED』这一串设定，proxy_auth 是关键词，而 REQUIRED 
+		则是指定任何在密码文件内的用户都能够使用验证的意思。如果一切顺利的话，那么你的内网依旧可以使用 transparent proxy ，
+		而外网则需要输入账密才能够使用 proxy server 提供的代理能力。至于验证的过程有点像这样：</p>
+
+		<center><img src="./linux_server_17_squid_files/proxy_auth.gif" alt="使用 proxy 需验证的示意图" title="使用 proxy 需验证的示意图" width="580" border="1"><br>
+		图 17.4-1、使用 proxy 需验证的示意图<br></center>
+
+		<p>上图中箭头 1 为刚刚你设定的 real 内容，而帐密则是你用 htpasswd 所建立的数据啦！另外，既然已经加上了验证功能，
+		那么你可能得要将防火墙开放 port 3128 对全世界监听的过滤才行呦！防火墙还是不要忘记了！ ^_^</p>
+	</div>
+
+	<hr><a name="adv_sarg"></a><img src="./linux_server_17_squid_files/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">17.4.4 末端登录档分析： sarg</span><br>
+	<div class="block2">
+		<p>事实上， squid 已经收集了众多的登录文件分析软件了，而且大多是免费的
+		(<a href="http://www.squid-cache.org/Scripts/" target="_blank">http://www.squid-cache.org/Scripts/</a>)
+		，你可以依照自己的喜好来加以安装与分析你的 squid 登录档喔！鸟哥这里仅介绍一套相当强的分析软件，
+		那就是 sarg。</p>
+
+		<p><a href="http://sarg.sourceforge.net/sarg.php" target="_blank">Squid Analysis Report Generator</a> (Squid 分析报告制作者)，他的官方网站在：
+		<a href="http://sarg.sourceforge.net/sarg.php" target="_blank">http://sarg.sourceforge.net/sarg.php</a>，他的原理相当的简单，就是将
+		logfile 拿出来，然后进行一下解析，依据不同的时间、网站、与热门网站等等来进行数据的输出，
+		由于输出的结果实在是太详细了！所以...呵呵！如果你是老板的话，用这个软件会让你『爱不释手』啊！
+		因为每个人的每个小动作都会被记录下来，我的天吶！当我第一次看到这个分析的画面时，真的给他吓了老大一跳得说～因为连每个
+		IP 在『每个小时所连上的每个网站数据』都有纪录～～害怕了吧～</p>
+
+		<p>不过，有优点就有缺点啦！怎么说呢？因为 SARG 功能太强大了，所以记录的『数据量』就实在是多了点，如果你的
+		Proxy 网站属于那种很大流量的网站时，那么就不要使用『日报表』，也就是每天产生一份报表的那种方式！
+		那么由于数据一天可能会有几 MB 的数据，一两个月还没有关系，如果记录了几年，那么光是这些记录就会花掉好几
+		GB 的硬盘空间了～此外，也可以使用『覆盖旧有数据』的方式不要留存旧数据，这样也可以节省硬盘的空间啦！</p>
+
+		<p>在 SARG 的官网上面已经有朋友替大家将 RPM 的档案制作出来了，你可以参考：<a href="http://packages.sw.be/sarg/" target="_blank">http://packages.sw.be/sarg/</a> 网站内的档案。由于鸟哥用的是 CentOS 6.x 64 位版本，但截至本日为止
+		(2011/08) 这个网站尚未释出稳定的 CentOS 6 版本，因此鸟哥下载的是 sarg-2.2.3.1-1.el5.rf.x86_64.rpm
+		这个版本。你可以使用 wget 下载到 /root 底下，再用 rpm -ivh 去安装起来即可。
+		这个软件默认会将 /var/www/sarg 作为输出报表的目标，而且你必须要安装与启动 WWW 服务器，
+		至于网址列则是： http://your.hostname/sarg 去查阅。底下让我们来处理 sarg 的配置文件吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum install gd</span>
+[root@www ~]# <span class="term_command">rpm -ivh sarg-2.2.3.1-1.el5.rf.x86_64.rpm</span>
+[root@www ~]# <span class="term_command">vim /etc/sarg/sarg.conf</span>
+title "Squid 使用者存取报告"           <span class="term_note">&lt;==第 49 行左右</span>
+font_size 12px                         <span class="term_note">&lt;==第 69 行左右</span>
+charset UTF-8                          <span class="term_note">&lt;==第 353 行左右</span>
+
+<span class="term_hd"># 1. 一口气制作所有登录文件内的数据报表</span>
+[root@www ~]# <span class="term_command">sarg</span>
+SARG: Records in file: 2285, reading: 100.00%  <span class="term_note">&lt;==列出分析信息</span>
+
+<span class="term_hd"># 2. 制作 8 月 2 日的报表</span>
+[root@www ~]# <span class="term_command">sarg -d 02/08/2011</span>
+<span class="term_say"># 这两个范例，都会将数据丢到 /var/www/sarg/ONE-SHOT/ 底下去；</span>
+
+<span class="term_hd"># 3. 制作昨天的报表</span>
+[root@www ~]# <span class="term_command">sh /etc/cron.daily/sarg</span>
+<span class="term_say"># 这个范例则是将每天的数据放置于 /var/www/sarg/daily/ 底下去！</span>
+</pre></td></tr></tbody></table>
+
+		<p>如果制作好相关数据，由于 sarg 这个 RPM 档案已经帮我们设定好了每日、每周、每月进行一次执行，
+		所以你可以不用管怎么执行啦！非常的方便！如果想要查阅数据，只要在 proxy server 端输入
+		http://your.hostname/sarg 会看到如下画面：</p>
+
+		<center><img src="./linux_server_17_squid_files/sarg_01.gif" alt="sarg 报表观察示意图" title="sarg 报表观察示意图" border="1"><br>
+		图 17.4-2、sarg 报表观察示意图<br></center>
+
+		<p>如上所示，在网址列输入服务器本机的咚咚，然后会看到几个连结。与我们有关的是 ONE-SHOT 以及 daily 两个，
+		我们来瞧瞧 ONE-SHOT (箭头 2 所指) 里面有啥咚咚？按下去会看到下图：</p>
+
+		<center><img src="./linux_server_17_squid_files/sarg_02.gif" alt="sarg 报表观察示意图" title="sarg 报表观察示意图" border="1"><br>
+		图 17.4-3、sarg 报表观察示意图<br></center>
+
+		<p>如上图所示，因为我们刚刚测试执行过两次 sarg 的指令，所以这里会有两个时间的连结。我们先看看总和数据，
+		亦即图中箭头所指的地方，会出现下图的说明：</p>
+
+		<center><img src="./linux_server_17_squid_files/sarg_03.gif" alt="sarg 报表观察示意图" title="sarg 报表观察示意图" border="1"><br>
+		图 17.4-4、sarg 报表观察示意图<br></center>
+
+		<p>在该段时间内，共有三个用户在存取，我们来瞧瞧 client.centos.vbird 到底干了啥事吧！</p>
+
+		<center><img src="./linux_server_17_squid_files/sarg_04.gif" alt="sarg 报表观察示意图" title="sarg 报表观察示意图" border="1"><br>
+		图 17.4-5、sarg 报表观察示意图<br></center>
+
+		<p>看到没有，这个用户在这段时间进行过的联机通通在里面！有没有很清晰呢？</p>
+	</div>
+</div>
+
+
+<hr><a name="hint"></a><img src="./linux_server_17_squid_files/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">17.5 重点回顾</span><br>
+<div class="block1">
+<ul class="text_import2">
+	<li>代理服务器的功能是在代理用户向因特网要求 Web page 的数据，同时达成 Web pages 的快取记录，以达到带宽节省的目的；
+		此外，还可以额外的达成防火墙的功能；</li>
+	<li>我们可以透过具有较大带宽的上层代理服务器来进行捉取数据的分流；</li>
+	<li>设定 Proxy 时，如果能以带宽更大的上层 Proxy 来帮助，将有助于 Client 端浏览速度的提升；</li>
+	<li>以防火墙的功能来说， Proxy 使用应用层的方式来达成防火墙功能，至于 iptables 则是更为底层的 TCP/IP 分析的方式；</li>
+	<li>目前 Unix Like 的机器中，做为 proxy 功能的服务器软件几乎都是使用 squid ，而 squid 仅需要设定 
+		squid.conf 这个配置文件即可使用；</li>
+	<li>squid 主要透过 acl 配合 http_access 来进行信任用户与目标 WWW 服务器的控管；</li>
+	<li>用 http_access 这个参数来设定控管行为时，『顺序』是有影响的</li>
+	<li>transparent proxy 的功能就是可以让 client 端不需要设定浏览器的 proxy 功能，即可进行 proxy 的工作；</li>
+</ul>
+</div>
+
+
+<hr><a name="ex"></a><img src="./linux_server_17_squid_files/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">17.6 本章习题</span><br>
+<div class="block1">
+<ul>
+	<li>请说明为何 Proxy 可以提升网络的 WWW 浏览速度？</li>
+	<li>万一 squid 发生了问题，请问我该如何找出问题点？</li>
+	<li>请说明 Proxy 服务器的功能为何？</li>
+	<li>试说明为何 Proxy 服务器可以提升网域之内的网络安全性？</li>
+</ul>
+</div>
+
+
+<hr><a name="reference"></a><img src="./linux_server_17_squid_files/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">17.7 参考数据与延伸阅读</span><br>
+<div class="block1">
+<ul>
+	<li>squid 官方网站：<a href="http://www.squid-cache.org/" target="_blank">http://www.squid-cache.org/</a></li>
+	<li>squid 说明文件计划：<a href="http://squid-docs.sourceforge.net/" target="_blank">http://squid-docs.sourceforge.net/</a>,
+		<a href="http://www.deckle.co.za/squid-users-guide/" target="_blank">http://www.deckle.co.za/squid-users-guide/</a></li>
+	<li>squid 的验证流程：<a href="http://www.l-penguin.idv.tw/article/proxy-auth.htm" target="_blank">http://www.l-penguin.idv.tw/article/proxy-auth.htm</a></li>
+	<li>旧版的一些范例参考：<a href="http://linux.vbird.org/linux_server/0420squid/0420squid_vbird_ex" target="_blank">http://linux.vbird.org/linux_server/0420squid/0420squid_vbird_ex</a></li>
+	<li>squid 官网收集的登录文件分析软件：<a href="http://www.squid-cache.org/Scripts/" target="_blank">http://www.squid-cache.org/Scripts/</a></li>
+</ul>
+</div>
+
+
+<hr><span class="text_history">
+2001/??/??：第一次完成日期，其实已经忘记了～<br>
+2001/11/09：加入增加 Proxy 效能的方法，就是使用多颗硬盘做成的数据储存方式！<br>
+2003/04/04：完成大幅度的改写动作！加入了完整的 Proxy 说明，与 pwebstats 的架设！<br>
+2003/04/11：完成了另一个末端分析的强大软件 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0420squid.php#serverahead_sarg">SARG 分析套件</a>！<br>
+2003/09/16：微幅调校一下版面！<br>
+2004/11/12：修订 transparent proxy 的设定问题， httpd_accel_with_proxy on<br>
+2011/03/31：将旧的基于好老的 Red Hat 9 的文章移动到 <a href="http://linux.vbird.org/linux_server/0420squid/0420squid.php">此处</a><br>
+2011/04/08：累死了～这篇修改的幅度太大了！好疲倦～<br>
+2011/08/02：将基于 CentOS 5.x 的版本移动到<a href="http://linux.vbird.org/linux_server/0420squid/0420squid-centos5.php">此处</a><hr>
+</span>
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+</tbody></table>
+
+<div style="padding-top: 0px; text-align: center;">
+<span style="font-size: 80%;">
+	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a>
+	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a>
+		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>
+         ﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div>
+</div>
+</center>
+
+</body></html>
