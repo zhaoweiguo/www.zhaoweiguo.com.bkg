@@ -1,4 +1,4 @@
-.. _introduce:
+.. _gamead_introduce:
 
 简介
 #############

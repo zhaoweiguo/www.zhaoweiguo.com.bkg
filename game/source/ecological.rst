@@ -1,10 +1,7 @@
-.. Ecological documentation master file, created by
-   sphinx-quickstart on Wed Feb 20 15:57:44 2013.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. _ecological:
 
 仿真生态系统
-======================================
+##################
 :时间: 2013-02-20
 :作者:     新溪-gordon
 
@@ -17,12 +14,9 @@
 .. toctree::
    :maxdepth: 2
 
-   introduce
+   ecologicals/ecological_introduce
 
-Indices and tables
-==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+
+
 
