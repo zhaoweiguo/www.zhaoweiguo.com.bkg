@@ -22,6 +22,7 @@
    gamead
    ecological
    running
+   findthetreasure
 
 Indices and tables
 ==================
