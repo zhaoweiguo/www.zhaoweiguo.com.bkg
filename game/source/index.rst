@@ -6,7 +6,7 @@
 游戏锦集
 ================================
 
-游戏文档:
+* 游戏文档:
 
 .. toctree::
    :maxdepth: 2
@@ -14,15 +14,16 @@
    gameusage
 
 
-游戏列表:
+* 游戏列表:
 
 .. toctree::
-   :madepth: 2
+   :maxdepth: 2
 
    gamead
    ecological
    running
    findthetreasure
+
 
 Indices and tables
 ==================
