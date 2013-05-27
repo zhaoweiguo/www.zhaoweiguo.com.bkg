@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)https://httpkit.com/resources/HTTP-from-the-Command-Line/#send-a-request-body -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>9 uses for cURL worth knowing | httpkit | Tools for hacking on HTTP</title>
+    <!-- Bootstrap -->
+    <link href="https://httpkit.com/css/httpkit.css" rel="stylesheet">
+    <link href="https://httpkit.com/css/font-awesome.css" rel="stylesheet">
+    <link href="./9 uses for cURL worth knowing   httpkit   Tools for hacking on HTTP_files/css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body data-spy="scroll" data-target=".sidebar" data-offset="50" id="top">
+    <div class="container">
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="https://httpkit.com/"><i class="icon-briefcase"></i> httpkit</a>
+                    <ul class="nav">
+                        <li><a href="https://httpkit.com/wiretap">Wiretap</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="hero-unit">
+            <h1>9 uses for cURL worth knowing</h1>
+            <p>Hacking on HTTP from the Command-Line</p>
+        </div>
+        <div class="row">
+            <div class="span4 sidenav">
+                <div class="sidebar affix-top" data-spy="affix" data-offset-top="255">
+                    <h4 class="title">9 uses for cURL worth knowing</h4>
+                    <ul class="nav nav-list sidenav">
+                        <li class="nav-header">Table of Contents</li>
+                        
+                        <li class=""><a href="#make-a-request">1. Make a Request</a></li>
+                        
+                        <li class=""><a href="#set-the-request-method">2. Set the Request Method</a></li>
+                        
+                        <li class=""><a href="#set-request-headers">3. Set Request Headers</a></li>
+                        
+                        <li class=""><a href="#send-a-request-body">4. Send a Request Body</a></li>
+                        
+                        <li class=""><a href="#use-a-file-as-a-request-body">5. Use a File as a Request Body</a></li>
+                        
+                        <li class=""><a href="#post-html-form-data">6. POST HTML Form Data</a></li>
+                        
+                        <li class=""><a href="#post-html-multipart">7. POST Multipart/File Forms</a></li>
+                        
+                        <li class=""><a href="#avoid-dns">8. Test Virtual Hosts, Avoid DNS</a></li>
+                        
+                        <li class="active"><a href="#view-response-headers">9. View Response Headers</a></li>
+                        
+                    </ul>
+                    <hr>
+                    <div class="secondary">
+                        <h4>about <i class="icon-briefcase"></i> httpkit</h4>
+                        <p><a href="https://httpkit.com/wiretap">Wiretap</a> is a tool that helps you integrate apps with REST APIs. It's like your browser's network tab, but for mobile and server-side apps. It shows you requests and responses in real-time. <strong>Wiretap needs some beta testers.<br><a href="https://httpkit.com/wiretap">Join the Wiretap beta.</a></strong>
+                        </p><p>Assembled by <a href="http://krisjordan.com/">Kris Jordan</a>.</p>
+                    </div>
+                </div>
+                &nbsp;
+            </div>
+            <div class="span8 article">
+            <p>Working with HTTP from the command-line is a valuable skill for HTTP architects and API designers to have. The <a href="http://curl.haxx.se/">cURL</a> library and <code>curl</code> command give you the ability to design a Request, put it on the pipe, and explore the Response. The downside to the power of <code>curl</code> is how much breadth its options cover. Running <code>curl --help</code> spits out 150 different flags and options. This article demonstrates nine basic, real-world applications of <code>curl</code>.</p>
+
+<p>In this tutorial we’ll use the httpkit <a href="http://echo.httpkit.com/">echo</a> service as our end point. The echo server’s Response is a JSON representation of the HTTP request it receives.</p>
+<h2 id="make-a-request">Make a Request</h2>
+<p>Let’s start with the simplest <code>curl</code> command possible.</p>
+<div class="example-code"><div class="row"><div class="span1"><strong class="pull-right">Request</strong></div><div class="span6">
+<pre><code>curl http://echo.httpkit.com
+</code></pre></div></div>
+<div class="row"><div class="span1"><strong class="pull-right">Response</strong></div><div class="span6">
+<pre><code>{
+  "method": "GET",
+  "uri": "/",
+  "path": {
+    "name": "/",
+    "query": "",
+    "params": {}
+  },
+  "headers": {
+    "host": "echo.httpkit.com",
+    "user-agent": "curl/7.24.0 ...",
+    "accept": "*/*"
+  },
+  "body": null,
+  "ip": "28.169.144.35",
+  "powered-by": "http://httpkit.com",
+  "docs": "http://httpkit.com/echo"
+}
+</code></pre></div></div></div>
+<p>Just like that we have used <code>curl</code> to make an HTTP Request. The method, or “verb”, <code>curl</code> uses, by default, is <code>GET</code>. The resource, or “noun”, we are requestion is addressed by the URL pointing to the <a href="https://httpkit.com/">httpkit</a> <a href="https://httpkit.com/echo">echo</a> service, <code>http://echo.httpkit.com</code>.</p>
+
+<p>You can add path and query string parameters right to the URL.</p>
+<div class="example-code"><div class="row">
+    <div class="span1">
+        <strong class="pull-right">Request</strong>
+    </div>
+    <div class="span6">
+<pre><code>curl http://echo.httpkit.com/path?query=string
+</code></pre>
+    </div>
+</div>
+<div class="row">
+    <div class="span1">
+        <strong class="pull-right">Response</strong>
+    </div>
+    <div class="span6">
+    <pre><code>{ ...
+  "uri": "/path?query=string",
+  "path": {
+    "name": "/path",
+    "query": "?query=string",
+    "params": {
+      "query": "string"
+    }
+  }, ...
+}
+</code></pre></div></div></div><h2 id="set-the-request-method">Set the Request Method</h2>
+<p>The <code>curl</code> default HTTP method, <code>GET</code>, can be set to any method you would like using the <code>-X</code> option. The usual suspects <code>POST</code>, <code>PUT</code>, <code>DELETE</code>, and even custom methods, can be specified.</p>
+<div class="example-code"><div class="row">
+    <div class="span1">
+        <strong class="pull-right">Request</strong>
+    </div>
+    <div class="span6">
+<pre><code>curl -X POST echo.httpkit.com
+</code></pre>
+    </div>
+</div>
+<div class="row">
+    <div class="span1">
+        <strong class="pull-right">Response</strong>
+    </div>
+    <div class="span6">
+    <pre><code>{
+    "method": "POST",
+    ...
+}
+</code></pre></div></div></div>
+<p>As you can see, the <code>http://</code> protocol prefix can be dropped with <code>curl</code> because it is assumed by default. Let’s give <code>DELETE</code> a try, too.</p>
+<div class="example-code"><div class="row">
+    <div class="span1">
+        <strong class="pull-right">Request</strong>
+    </div>
+    <div class="span6">
+<pre><code>curl -X DELETE echo.httpkit.com
+</code></pre>
+    </div>
+</div>
+<div class="row">
+    <div class="span1">
+        <strong class="pull-right">Response</strong>
+    </div>
+    <div class="span6">
+    <pre><code>{
+    "method": "DELETE",
+    ...
+}
+</code></pre></div></div></div><h2 id="set-request-headers">Set Request Headers</h2>
+<p>Request headers allow clients to provide servers with meta information about things such as authorization, capabilities, and body content-type. OAuth2 uses an <code>Authorization</code> header to pass access tokens, for example. Custom headers are set in <code>curl</code> using the <code>-H</code> option.</p>
+<div class="example-code"><div class="row">
+    <div class="span1">
+        <strong class="pull-right">Request</strong>
+    </div>
+    <div class="span6">
+<pre><code>curl -H "Authorization: OAuth 2c4419d1aabeec" \
+     http://echo.httpkit.com
+</code></pre>
+    </div>
+</div>
+<div class="row">
+    <div class="span1">
+        <strong class="pull-right">Response</strong>
+    </div>
+    <div class="span6">
+    <pre><code>{...
+"headers": {
+    "host": "echo.httpkit.com",
+    "authorization": "OAuth 2c4419d1aabeec",
+  ...},
+...}
+</code></pre></div></div></div>
+<p>Multiple headers can be set by using the <code>-H</code> option multiple times.</p>
+<div class="example-code"><div class="row">
+    <div class="span1">
+        <strong class="pull-right">Request</strong>
+    </div>
+    <div class="span6">
+<pre><code>curl -H "Accept: application/json" \
+     -H "Authorization: OAuth 2c3455d1aeffc" \
+     http://echo.httpkit.com
+</code></pre>
+    </div>
+</div>
+<div class="row">
+    <div class="span1">
+        <strong class="pull-right">Response</strong>
+    </div>
+    <div class="span6">
+    <pre><code>{ ...
+  "headers": { ...
+    "host": "echo.httpkit.com",
+    "accept": "application/json",
+    "authorization": "OAuth 2c3455d1aeffc" 
+   }, ...
+}
+</code></pre></div></div></div><h2 id="send-a-request-body">Send a Request Body</h2>
+<p>Many popular HTTP APIs today <code>POST</code> and <code>PUT</code> resources using <code>application/json</code> or <code>application/xml</code> rather than in an HTML form data. Let’s try <code>PUT</code>ing some JSON data to the server.</p>
+<div class="example-code"><div class="row">
+    <div class="span1">
+        <strong class="pull-right">Request</strong>
+    </div>
+    <div class="span6">
+<pre><code>curl -X PUT \
+     -H 'Content-Type: application/json' \
+     -d '{"firstName":"Kris", "lastName":"Jordan"}'
+     echo.httpkit.com
+</code></pre>
+    </div>
+</div>
+<div class="row">
+    <div class="span1">
+        <strong class="pull-right">Response</strong>
+    </div>
+    <div class="span6">
+    <pre><code>{
+   "method": "PUT", ...
+   "headers": { ...
+     "content-type": "application/json",
+     "content-length": "40"
+   },
+   "body": "{\"firstName\":\"Kris\",\"lastName\":\"Jordan\"}",
+   ...
+ }
+</code></pre></div></div></div><h2 id="use-a-file-as-a-request-body">Use a File as a Request Body</h2>
+<p>Escaping JSON/XML at the command line can be a pain and sometimes the body payloads are large files. Luckily, cURL’s <code>@readfile</code> macro makes it easy to read in the contents of a file. If we had the above example’s JSON in a file named “example.json” we could have run it like this, instead:</p>
+<div class="example-code"><div class="row">
+    <div class="span1">
+        <strong class="pull-right">Request</strong>
+    </div>
+    <div class="span6">
+<pre><code>curl -X PUT \
+     -H 'Content-Type: application/json' \
+     -d @example.json
+     echo.httpkit.com
+</code></pre>
+    </div>
+</div>
+</div><h2 id="post-html-form-data">POST HTML Form Data</h2>
+<p>Being able to set a custom method, like POST, is of little use if we can’t also send a request body with data. Perhaps we are testing the submission of an HTML form. Using the <code>-d</code> option we can specify URL encoded field names and values.</p>
+<div class="example-code"><div class="row">
+    <div class="span1">
+        <strong class="pull-right">Request</strong>
+    </div>
+    <div class="span6">
+<pre><code>curl -d "firstName=Kris" \
+     -d "lastName=Jordan" \
+     echo.httpkit.com
+</code></pre>
+    </div>
+</div>
+<div class="row">
+    <div class="span1">
+        <strong class="pull-right">Response</strong>
+    </div>
+    <div class="span6">
+    <pre><code>{
+  "method": "POST", ...
+  "headers": {
+    "content-length": "30",
+    "content-type":"application/x-www-form-urlencoded"
+  },
+  "body": "firstName=Kris&amp;lastName=Jordan", ...
+}
+</code></pre></div></div></div>
+<p>Notice the method is <code>POST</code> even though we did not specify it. When <code>curl</code> sees form field data it assumes <code>POST</code>. You can override the method using the <code>-X</code> flag discussed above. The “Content-Type” header is also automatically set to “application/x-www-form-urlencoded” so that the web server knows how to parse the content. Finally, the request body is composed by URL encoding each of the form fields.</p>
+<h2 id="post-html-multipart">POST HTML Multipart / File Forms</h2>
+<p>What about HTML forms with file uploads? As you know from writing HTML file upload form, these use a <code>multipart/form-data</code> Content-Type, with the <code>enctype</code> attribute in HTML. In cURL we can pair the <code>-F</code> option and the <code>@readFile</code> macro covered <a href="#use-a-file-as-a-request-body">above</a>.</p>
+<div class="example-code"><div class="row">
+    <div class="span1">
+        <strong class="pull-right">Request</strong>
+    </div>
+    <div class="span7">
+<pre><code>curl -F "firstName=Kris" \
+     -F "publicKey=@idrsa.pub;type=text/plain" \
+     echo.httpkit.com
+</code></pre>
+    </div>
+</div>
+<div class="row">
+    <div class="span1">
+        <strong class="pull-right">Response</strong>
+    </div>
+    <div class="span7">
+    <pre><code>{
+  "method": "POST",
+  ...
+  "headers": {
+    "content-length": "697",
+    "content-type": "multipart/form-data;
+    boundary=----------------------------488327019409",
+    ... },
+  "body": "------------------------------488327019409\r\n
+           Content-Disposition: form-data;
+           name=\"firstName\"\r\n\r\n
+           Kris\r\n
+           ------------------------------488327019409\r\n
+           Content-Disposition: form-data;
+           name=\"publicKey\";
+           filename=\"id_rsa.pub\"\r\n
+           Content-Type: text/plain\r\n\r\n
+           ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAkq1lZYUOJH2
+           ... more [a-zA-Z0-9]* ...
+           naZXJw== krisjordan@gmail.com\n\r\n
+           ------------------------------488327019409
+           --\r\n",
+...}
+</code></pre></div></div></div>
+<p>Like with the <code>-d</code> flag, when using <code>-F</code> <code>curl</code> will automatically default to the <code>POST</code> method, the <code>multipart/form-data</code> content-type header, calculate length, and compose the multipart body for you. Notice how the <code>@readFile</code> macro will read the contents of a file into any string, it’s not just a standalone operator. The “;text/plain” specifies the MIME content-type of the file. Left unspecified, <code>curl</code> will attempt to sniff the content-type for you.</p>
+<h2 id="avoid-dns">Test Virtual Hosts, Avoid DNS</h2>
+<p>Testing a virtual host or a caching proxy before modifying DNS and without overriding hosts is useful on occassion. With cURL just point the request at your host’s IP address and override the default <code>Host</code> header cURL sets up.</p>
+<div class="example-code"><div class="row">
+    <div class="span1">
+        <strong class="pull-right">Request</strong>
+    </div>
+    <div class="span7">
+<pre><code>curl -H "Host: google.com" 50.112.251.120
+</code></pre></div></div>
+<div class="row">
+    <div class="span1">
+        <strong class="pull-right">Response</strong>
+    </div>
+    <div class="span7">
+    <pre><code>{
+  "method": "GET", ...
+  "headers": {
+    "host": "google.com", ...
+  }, ...
+}
+</code></pre></div></div></div><h2 id="view-response-headers">View Response Headers</h2>
+<p>APIs are increasingly making use of response headers to provide information on authorization, rate limiting, caching, etc. With cURL you can view the headers and the body using the <code>-i</code> flag.</p>
+<div class="example-code"><div class="row">
+    <div class="span1">
+        <strong class="pull-right">Request</strong>
+    </div>
+    <div class="span7">
+<pre><code>curl -i echo.httpkit.com 
+</code></pre></div></div>
+<div class="row">
+    <div class="span1">
+        <strong class="pull-right">Response</strong>
+    </div>
+    <div class="span7">
+    <pre><code>HTTP/1.1 200 OK
+Server: nginx/1.1.19
+Date: Wed, 29 Aug 2012 04:18:19 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 391
+Connection: keep-alive
+X-Powered-By: http://httpkit.com
+
+{
+  "method": "GET",
+  "uri": "/", ...
+}
+</code></pre></div></div></div>
+
+            <hr>
+            <b>Shameless plug</b>: Do you hack on REST API integrations or implementations? <a href="https://httpkit.com/wiretap">Wiretap</a> is an HTTP debugger you can use to see every request and response between any client and HTTP API in real time. It's entering private beta soon. <a href="https://httpkit.com/wiretap">Help test it!</a>
+
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p class="pull-left">© Kris Jordan 2012</p>
+            <p class="pull-right"><a href="#top">Back to Top</a></p>
+        </div>
+    </footer>
+    <script type="text/javascript" async="" src="./9 uses for cURL worth knowing   httpkit   Tools for hacking on HTTP_files/ga.js"></script><script src="./9 uses for cURL worth knowing   httpkit   Tools for hacking on HTTP_files/jquery-1.8.0.min.js"></script>
+    <script src="./9 uses for cURL worth knowing   httpkit   Tools for hacking on HTTP_files/bootstrap.min.js"></script>
+    <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36055368-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+  
+
+</body></html>
