@@ -40,7 +40,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <br/>
     <div>日期:<font id='now_date' color='red'><?php echo date("Y-n-j H:i:s D"); ?> </font></div>
     <div>IP:<font id='ip' color='red'><?php echo $_SERVER["REMOTE_ADDR"];?></font></div>
-<div>浏览器:<font id='browser' color='red'><?php echo $_SERVER["HTTP_USER_AGENT"]; echo"("; echo _SERVER['HTTP_ACCEPT_LANGUAGE']; echo")"?></font></div>
+<div>浏览器:<font id='browser' color='red'><?php echo $_SERVER["HTTP_USER_AGENT"]; echo"("; echo $_SERVER['HTTP_ACCEPT_LANGUAGE']; echo")"?></font></div>
 
 <br />
 </br />
