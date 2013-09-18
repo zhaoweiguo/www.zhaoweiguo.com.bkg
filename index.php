@@ -37,7 +37,9 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
     <div>已降临地球<font id="total_day" color='red'> </font>天</div>
     <div>还有<font id='remainder_day' color='red'></font>天到30岁</div>
 
-               <div><?php echo date("j, n, Y"); ?></div>
+    <div>日期:<font id='now_date' color='red'><?php echo date("Y-n-j H:i:s D"); ?> </font></div>
+<div>IP:<font id='ip' color='red'><?php echo $_SERVER["REMOTE_ADDR"];?></font></div>
+<div>浏览器:<font id='browser' color='red'><?php echo $_SERVER["HTTP_USER_AGENT"]; echo"(_SERVER['HTTP_ACCEPT_LANGUAGE'])"?></font></div>
 
 
     <div>微博:
