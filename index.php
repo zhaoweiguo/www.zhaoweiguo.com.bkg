@@ -36,12 +36,14 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
     <div>邮箱: programfan.info#gmail.com</div>
     <div>已降临地球<font id="total_day" color='red'> </font>天</div>
     <div>还有<font id='remainder_day' color='red'></font>天到30岁</div>
-
+<br/>
+<br/>
     <div>日期:<font id='now_date' color='red'><?php echo date("Y-n-j H:i:s D"); ?> </font></div>
 <div>IP:<font id='ip' color='red'><?php echo $_SERVER["REMOTE_ADDR"];?></font></div>
 <div>浏览器:<font id='browser' color='red'><?php echo $_SERVER["HTTP_USER_AGENT"]; echo"(_SERVER['HTTP_ACCEPT_LANGUAGE'])"?></font></div>
 
-
+<br />
+</br />
     <div>微博:
       <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=0&isFans=0&uid=1226625823&verifier=7cf53c5c&dpc=1"></iframe>
 
@@ -64,7 +66,12 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
         .bizmail_loginpanel .bizmail_SubmitArea a{font-size:12px;margin-left:5px;}
         .bizmail_loginpanel select{width:110px;height:20px;margin:0 2px;}
       </style>
+
+
+
       <script type="text/javascript" src="http://exmail.qq.com/zh_CN/htmledition/js_biz/outerlogin.js"  charset="gb18030"></script>
+
+
       <script type="text/javascript">
         writeLoginPanel({domainlist:"programfan.info", mode:"horizontal"});
         // 计算我已经降临地球多少天
