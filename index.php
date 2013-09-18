@@ -1,0 +1,91 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <head>
+    <title>关于<新溪-gordon></title>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3735c33915718b8a09c27bed6968779f' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+  </head>
+
+  <body>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div>网名: 新溪-gordon</div>
+    <div>真名: 赵卫国</div>
+    <div style="display: none;">文档: <a href="http://programfan.info:8888"><b>我最近一年整理的文档</b></a></div>
+<br><br>
+
+    <div>博客: <a href="http://blog.programfan.info">Erlang——新溪-gordon之胡写乱画</a></div>
+    <div>论坛: <a href="http://bbs.programfan.info">一个没几个人光顾的地方</a></div>
+    <b><div><font color="red">个人知识体系: </font><a href="http://www.programfan.info:8888"><font color="red">最近一年整理的知识体系</font></a></div></b>
+<br><br>
+    <div style="display:none">我的淘宝小店: <a href="http://weimaiyi.taobao.com">唯美买衣小店</a></div>
+
+<br><br>
+    <div>游戏开发文档: <a href="./game/build/html/index.html">游戏天地</a></div>
+
+<br><br>
+    <div>邮箱: programfan.info#gmail.com</div>
+    <div>已降临地球<font id="total_day" color='red'> </font>天</div>
+    <div>还有<font id='remainder_day' color='red'></font>天到30岁</div>
+
+               <div><?php echo date("j, n, Y"); /></div>
+
+
+    <div>微博:
+      <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=0&isFans=0&uid=1226625823&verifier=7cf53c5c&dpc=1"></iframe>
+
+    </div>
+
+
+
+    <div>
+      <style>
+        .bizmail_loginpanel{font-size:12px;width:300px;height:auto;border:1px solid #cccccc;background:#ffffff;}
+        .bizmail_LoginBox{padding:10px 15px;}
+        .bizmail_loginpanel h3{padding-bottom:5px;margin:0 0 5px 0;border-bottom:1px solid #cccccc;font-size:14px;}
+        .bizmail_loginpanel form{margin:0;padding:0;}
+        .bizmail_loginpanel input.text{font-size:12px;width:100px;height:20px;margin:0 2px;border:1px solid #C3C3C3;border-color:#7C7C7C #C3C3C3 #C3C3C3 #9A9A9A;}
+        .bizmail_loginpanel .bizmail_column{height:28px;}
+        .bizmail_loginpanel .bizmail_column label{display:block;float:left;width:30px;height:24px;line-height:24px;font-size:12px;}
+        .bizmail_loginpanel .bizmail_column .bizmail_inputArea{float:left;width:240px;}
+        .bizmail_loginpanel .bizmail_column span{font-size:12px;word-wrap:break-word;margin-left: 2px;line-height:200%;}
+        .bizmail_loginpanel .bizmail_SubmitArea{margin-left:30px;clear:both;}
+        .bizmail_loginpanel .bizmail_SubmitArea a{font-size:12px;margin-left:5px;}
+        .bizmail_loginpanel select{width:110px;height:20px;margin:0 2px;}
+      </style>
+      <script type="text/javascript" src="http://exmail.qq.com/zh_CN/htmledition/js_biz/outerlogin.js"  charset="gb18030"></script>
+      <script type="text/javascript">
+        writeLoginPanel({domainlist:"programfan.info", mode:"horizontal"});
+        // 计算我已经降临地球多少天
+        nowDate = new Date();
+        year = nowDate.getFullYear();  // 四位数字
+        month = nowDate.getMonth();  // 0-11
+        day = nowDate.getDate();   // 1-31
+        ToDate = new Date(year, month, day); //今天日期(0点)
+        FromDate = new Date(1987, 7, 21);   //出生日期(0点)
+        ToMS = ToDate.getTime();
+        FromMS = FromDate.getTime();
+        Days = (ToMS - FromMS)/(24*3600*1000);
+        document.getElementById('total_day').innerHTML = parseInt(Days);
+        // 计算我还多少天到30岁
+        date30 = new Date(2017, 7, 21);
+        toMS30 = date30.getTime();
+        Days2 = (toMS30 - ToMS)/(24*3600*1000);
+        document.getElementById('remainder_day').innerHTML = parseInt(Days2);
+        
+      </script>
+
+    </div>
+
+  </body>
+
+</html>
