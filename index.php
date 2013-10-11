@@ -108,9 +108,11 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
       <script src="./static/js/jquery.qrcode.min.js" ></script>
       <script>
+                                       /*
           jQuery('#qrcode_blog').qrcode("http://blog.programfan.info");
           jQuery('#qrcode_bbs').qrcode("http://bbs.programfan.info");
           jQuery('#qrcode_doc').qrcode("http://www.programfan.info:8888/");
+                                       */
           jQuery('#qrcode_taobao').qrcode("http://jujipin.taobao.com/");
       </script>
     </div>
