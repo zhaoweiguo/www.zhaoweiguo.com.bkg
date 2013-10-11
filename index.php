@@ -105,7 +105,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
         
       </script>
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+      <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
       <script src="./static/js/jquery.qrcode.min.js" ></script>
       <script>
                                        /*
