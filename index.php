@@ -23,11 +23,23 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
     <div style="display: none;">文档: <a href="http://programfan.info:8888"><b>我最近一年整理的文档</b></a></div>
 <br><br>
 
-    <div>博客: <a href="http://blog.programfan.info">Erlang——新溪-gordon之胡写乱画</a></div>
-    <div>论坛: <a href="http://bbs.programfan.info">一个没几个人光顾的地方</a></div>
-    <b><div><font color="red">个人知识体系: </font><a href="http://www.programfan.info:8888"><font color="red">最近一年整理的知识体系</font></a></div></b>
+    <div>
+         博客: <a href="http://blog.programfan.info">Erlang——新溪-gordon之胡写乱画</a>
+         <div id="qrcode_blog"></div>
+    </div>
+    <div>
+        论坛: <a href="http://bbs.programfan.info">一个没几个人光顾的地方</a>
+        <div id='qrcode_bbs'></div>
+    </div>
+    <b><div>
+        <font color="red">个人知识体系: </font><a href="http://www.programfan.info:8888"><font color="red">最近一年整理的知识体系</font></a>
+        <div id='qrcdoe_doc'></div>
+    </div></b>
 <br><br>
-    <div style="display:none">我的淘宝小店: <a href="http://weimaiyi.taobao.com">唯美买衣小店</a></div>
+    <div">
+        妹妹的淘宝小店: <a href="http://fujuji.taobao.com">唯美买衣小店</a>
+        <div id='qrcode_taobao'></div>
+    </div>
 
 <br><br>
     <div>游戏开发文档: <a href="./game/build/html/index.html">游戏天地</a></div>
@@ -93,6 +105,13 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
         
       </script>
 
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+      <script src="./static/js/jquery.qrcode.min.js" ></script>
+      <script>
+          jQuery('#qrcode_blog').qrcode("http://blog.programfan.info");
+          jQuery('#qrcode_bbs').qrcode("http://bbs.programfan.info");
+          jQuery('#qrcode_doc').qrcode("http://www.programfan.info:8888/");
+      </script>
     </div>
 
   </body>
