@@ -37,7 +37,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
     </div></b>
 <br><br>
     <div">
-        <h2>妹妹的淘宝小店: <a href="http://jujipin.taobao.com">《集品阁》小店</a></h2>
+        <h2 color='red'>妹妹的淘宝小店: <a href="http://jujipin.taobao.com">《集品阁》小店(可以直接用手机扫描下面的二维码)</a></h2>
         <div id='qrcode_taobao'></div>
     </div>
 
