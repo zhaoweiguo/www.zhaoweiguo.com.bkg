@@ -33,7 +33,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
     </div>
     <b><div>
         <font color="red">个人知识体系: </font><a href="http://www.programfan.info:8888"><font color="red">最近一年整理的知识体系</font></a>
-        <div id='qrcdoe_doc'></div>
+        <div id='qrcode_doc'></div>
     </div></b>
 <br><br>
     <div">
