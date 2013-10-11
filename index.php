@@ -37,7 +37,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
     </div></b>
 <br><br>
     <div">
-        妹妹的淘宝小店: <a href="http://jipinge.taobao.com">唯美买衣小店</a>
+        妹妹的淘宝小店: <a href="http://jujipin.taobao.com">唯美买衣小店</a>
         <div id='qrcode_taobao'></div>
     </div>
 
@@ -111,7 +111,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
           jQuery('#qrcode_blog').qrcode("http://blog.programfan.info");
           jQuery('#qrcode_bbs').qrcode("http://bbs.programfan.info");
           jQuery('#qrcode_doc').qrcode("http://www.programfan.info:8888/");
-          jQuery('#qrcode_taobao').qrcode("http://jipinge.taobao.com/";)
+          jQuery('#qrcode_taobao').qrcode("http://jujipin.taobao.com/");
       </script>
     </div>
 
