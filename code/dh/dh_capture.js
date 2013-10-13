@@ -7,15 +7,7 @@
 	document[a.main] = document[a.main] || {};
 	a.ui = '
 		<div id="PREFIX_Header">
-			<a class="PREFIX_pinLogo" href="http://www.wei64.com">微游戏、微应用</a>
-			<a href="javascript:void(0)" id="PREFIX_ClosePinWindow">关闭</a>
-			<h6 id="PREFIX_pinTitle">还能选择<span>20</span>张</h6>
-		</div>
-		<div id="PREFIX_contentBox"><ul id="PREFIX_PinImglist"></ul></div>
-		<div id="PREFIX_Footer">
-			<label id="PREFIX_selectAllBtn"><input type="checkbox" id="全选"  />全选</label>
-			<a href="javascript:void(0)" id="PREFIX_PinNextBtn">采回家</a>
-			<select id="PREFIX_Pinfilter"><option value="300" selected="selected">图片宽度>300</option><option value="500">图片宽度>500</option><option value="800">图片宽度>800</option></select></div>'.replace(/PREFIX/g, a.main);
+			<a class="PREFIX_pinLogo" href="http://www.wei64.com">微游戏、微应用</a><a href="javascript:void(0)" id="PREFIX_ClosePinWindow">关闭</a><h6 id="PREFIX_pinTitle">还能选择<span>20</span>张</h6></div><div id="PREFIX_contentBox"><ul id="PREFIX_PinImglist"></ul></div><div id="PREFIX_Footer"><label id="PREFIX_selectAllBtn"><input type="checkbox" id="全选"  />全选</label><a href="javascript:void(0)" id="PREFIX_PinNextBtn">采回家</a><select id="PREFIX_Pinfilter"><option value="300" selected="selected">图片宽度>300</option><option value="500">图片宽度>500</option><option value="800">图片宽度>800</option></select></div>'.replace(/PREFIX/g, a.main);
 	a.base = {
 		domain : "http://" + a.hostName,
 		imgUrl : "http://s11.libmibo.com/images/module/pin/",
