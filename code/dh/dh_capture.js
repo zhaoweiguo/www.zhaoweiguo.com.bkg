@@ -386,10 +386,10 @@
 			var _imgs = typeof data.imgs == "object" ? data.imgs.join("{---}") : data.imgs;
 			var title = data.title;
 			var _pinData = {
-				media : _imgs,
-				url : data.srouce,
+				url : _imgs,
+				originurl : data.srouce,
 				title : data.title,
-                host:data.host
+                originhost:data.host
 			};
 			for (var i in _pinData) {
 				if (i == "title") {
