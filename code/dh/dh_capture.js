@@ -15,12 +15,7 @@
 		<div id="PREFIX_Footer">
 			<label id="PREFIX_selectAllBtn"><input type="checkbox" id="全选"  />全选</label>
 			<a href="javascript:void(0)" id="PREFIX_PinNextBtn">采回家</a>
-			<select id="PREFIX_Pinfilter">
-				<option value="300" selected="selected">图片宽度>300</option>
-				<option value="500">图片宽度>500</option>
-				<option value="800">图片宽度>800</option>
-			</select>
-		</div>'.replace(/PREFIX/g, a.main);
+			<select id="PREFIX_Pinfilter"><option value="300" selected="selected">图片宽度>300</option><option value="500">图片宽度>500</option><option value="800">图片宽度>800</option></select></div>'.replace(/PREFIX/g, a.main);
 	a.base = {
 		domain : "http://" + a.hostName,
 		imgUrl : "http://s11.libmibo.com/images/module/pin/",
