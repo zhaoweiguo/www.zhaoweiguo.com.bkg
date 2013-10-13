@@ -1,0 +1,1 @@
+javascript:void((function(){var%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('src','http://www.programfan.info/code/dh/dh_capture.js');document.body.appendChild(e)})());
