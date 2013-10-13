@@ -2,30 +2,29 @@
 	var a = a || {},
 	b = window,
 	c = document;
-	a.hostName = "api.wei64.com/10001/1";
-	a.main = "diehua";
+	a.hostName = "api.wei64.com:10001";
+	a.main = "wei64";
 	document[a.main] = document[a.main] || {};
-	a.ui = '<div id="PREFIX_Header">
-				<a class="PREFIX_pinLogo" href="http://www.diehua.com:8000">碟花网</a>
-				<a href="javascript:void(0)" id="PREFIX_ClosePinWindow">关闭</a>
-				<h6 id="PREFIX_pinTitle">还能选择<span>20</span>张</h6>
-			</div>
-			<div id="PREFIX_contentBox">
-				<ul id="PREFIX_PinImglist"></ul>
-			</div>
-			<div id="PREFIX_Footer">
-				<label id="PREFIX_selectAllBtn"><input type="checkbox" id="全选"  />全选</label>
-				<a href="javascript:void(0)" id="PREFIX_PinNextBtn">采回家</a>
-				<select id="PREFIX_Pinfilter">
-					<option value="300" selected="selected">图片宽度>300</option>
-					<option value="500">图片宽度>500</option>
-					<option value="800">图片宽度>800</option>
-				</select>
-			</div>'.replace(/PREFIX/g, a.main);
+	a.ui = '
+		<div id="PREFIX_Header">
+			<a class="PREFIX_pinLogo" href="http://www.wei64.com">微游戏、微应用</a>
+			<a href="javascript:void(0)" id="PREFIX_ClosePinWindow">关闭</a>
+			<h6 id="PREFIX_pinTitle">还能选择<span>20</span>张</h6>
+		</div>
+		<div id="PREFIX_contentBox"><ul id="PREFIX_PinImglist"></ul></div>
+		<div id="PREFIX_Footer">
+			<label id="PREFIX_selectAllBtn"><input type="checkbox" id="全选"  />全选</label>
+			<a href="javascript:void(0)" id="PREFIX_PinNextBtn">采回家</a>
+			<select id="PREFIX_Pinfilter">
+				<option value="300" selected="selected">图片宽度>300</option>
+				<option value="500">图片宽度>500</option>
+				<option value="800">图片宽度>800</option>
+			</select>
+		</div>'.replace(/PREFIX/g, a.main);
 	a.base = {
 		domain : "http://" + a.hostName,
 		imgUrl : "http://s11.libmibo.com/images/module/pin/",
-		bookmarkletUrl : "http://" + a.hostName+"/collect/getpic",
+		bookmarkletUrl : "http://" + a.hostName+"/1/collect/getpic/10",
 		locationHost : encodeURIComponent(window.location),
 		pinBtn : null,
 		hidePinBtnTimer : null,
@@ -66,167 +65,45 @@
 			return
 		}
 		var styleContnet = "
-			#PREFIX_Overlay{
-				position:fixed;z-index:1000000001; 
-				top:0; right:0; left:0; bottom:0;background:black; opacity:.8
-			}
-			#PREFIX_pinItButton{
-				display:block;position:absolute;z-index:999999999;
-				color:#211922;background:#FFF; text-shadow:0 1px #eaeaea; 
-				border-radius:5px; box-shadow:0 0 2px #555
-			}
-			#PREFIX_pinBtn { 
-				display: block; position: absolute; z-index: 999999999; 
-				color: #211922; background: #fff; text-shadow: 0 1px #eaeaea; border-radius: 5px; 
-				box-shadow: 0 0 2px #555; font: 12px/1 'Helvetica Neue',Helvetica,Arial,Sans-serif; 
-				text-align: center; padding: 5px 8px; cursor: pointer; 
-			}
-			#PREFIX_pinBtn:hover { 
-				background-image: -webkit-linear-gradient(top, #fefeff, #efefef); 
-				background-image: -moz-linear-gradient(top, #fefeff, #efefef); 
-			}
-			#PREFIX_Container a,#PREFIX_Container a:active,#PREFIX_Container a:hover{
-				text-decoration:none
-			}
-			#PREFIX_Container {
-				float:none;padding:20px;font-size:12px;
-				font-family: 'helvetica neue', arial, sans-serif; position: fixed;  
-				z-index: 1000000002;background-color: #EEE; opacity: 1;hasLayout:-1;
-				box-shadow: 0 0 15px #000000;border-radius:4px
-			}
-			#PREFIX_Header{
-				position:relative;height:45px;line-height:45px;padding-right:40px;float:none
-			}
-			#PREFIX_contentBox{
-				float:none;height:338px;width:810px;background:#FFF;overflow-y:auto;overflow-x: 
-				hidden;position:relative
-			}
-			#PREFIX_PinImglist{
-				padding:0;margin:0;border:solid #CCC;border-width:0 0 0 1px;background:#FFF;
-				overflow: hidden;padding-top:1px;width:805px
-			}
-			#PREFIX_Footer{
-				float:none;height:50px; padding:25px 15px 0; position:relative
-			}
-			.PREFIX_pinLogo{
-				width:190px;height:35px;overflow:hidden;position:absolute;top:0; left:0;text-indent:-99em; 
-				background:url(http://s11.libmibo.com/images/pinIconv2.png) 
-				no-repeat -35px 0
-			}
-			#PREFIX_ClosePinWindow{
-				width:35px; height:35px;position:absolute;top:-5px; right:-5px;text-indent:-99em; overflow:hidden; 
-				background:url(http://s11.libmibo.com/images/module/pin/pinIconv2.png) no-repeat 0 0
-			}
-			#PREFIX_PinImglist li{
-				float:left;width:158px;height:158px;margin-top:-1px;margin-left:-1px;overflow:hidden;
-				border:solid #CCC;border-width:1px;text-align:center;position:relative;vertical-align: middle
-			}
-			#PREFIX_PinImglist li a.PREFIX_ItemImg{
-				display:block;width: 158px;height: 158px;font-size: 0;overflow: hidden;text-align: center;
-				position: relative;vertical-align: middle
-			}
-			#PREFIX_PinImglist li a:hover{
-				text-decoration: none
-			}
-			#PREFIX_PinImglist li a.PREFIX_ItemImg::after {
-				display: inline-block;width: 0;height: 100%;content: \".\";vertical-align: middle;overflow: hidden;
-			}
-			#PREFIX_PinImglist li img{
-				max-width:158px; max-height:158px;vertical-align: middle;margin:auto;display:inline; z-index:10002
-			}
-			.PREFIX_Dimensions{
-				background:white;border-radius: 4px;color: #000000;display:block;font-size: 10px;padding: 0 2px;
-				position:absolute;left:55px;top:125px;text-align: center;z-index: 10003;
-			}
-			.PREFIX_MaskLayer{
-				background:rgba(73, 246, 243, 0.2);display: none;position: absolute;z-index:10004;
-				cursor: pointer;left: 0;top: 0;width: 158px;height: 158px;
-			}
-			#PREFIX_PinImglist li a:hover .PREFIX_MaskLayer{
-				display:block
-			}
-			#PREFIX_PinImglist li.PREFIX_selected .PREFIX_MaskLayer{
-				display:block
-			}
-			#PREFIX_PinImglist .PREFIX_SelectdIcon{
-				display:none;width:112px; height:47px;position:absolute;top:50px;left:25px;z-index:10005;
-				background:url(http://s11.libmibo.com/images/module/pin/icaitu_bookmarklet_icon_v2.png) no-repeat 0 0
-			}
-			#PREFIX_PinImglist .PREFIX_SelectdIcon:hover{
-				background-position:0 -61px
-			}
-			#PREFIX_PinImglist li a:hover{
-				font-weight:100
-			} 
-			#PREFIX_PinImglist li a:hover .PREFIX_SelectdIcon{
-				display:block
-			}
-			#PREFIX_pinTitle{
-				height:100%; width:100%; margin:0; padding:0; text-align:right;font-size:14px;font-weight:100
-			}
-			#PREFIX_pinTitle span{
-				font-size:16px; padding:0 5px
-			}
-			#PREFIX_PinImglist li.PREFIX_selected .PREFIX_SelectdIcon{
-				background-position:0 -124px;display:block
-			}
-			#PREFIX_pinTitle:active{
-				cursor:move
-			}
-			#PREFIX_PinNextBtn{
-				width:181px; height:39px; line-height:39px; text-align:center; font-size:20px; color:#888; 
-				margin:0 auto;display: block; 
-				background:url(http://s11.libmibo.com/images/module/pin/pinIconv2.png) no-repeat 0 -36px;cursor: default;
-			}
-			#PREFIX_PinNextBtn.PREFIX_enable{
-				background-position:0 -76px;color:#FFF;cursor: pointer;
-			}
-			#PREFIX_PinNextBtn:hover{
-				text-decoration:none;color:#888
-			}
-			#PREFIX_PinNextBtn.PREFIX_enable:hover{
-				text-decoration:none;color:#FFF
-			}
-			#PREFIX_selectAllBtn{
-				display:block;width:50px;height:20px; position:absolute; left:255px;top:40px
-			}
-			#PREFIX_selectAllBtn input{
-				vertical-align: middle;
-			}
-			#PREFIX_Pinfilter{
-				display:block;position: absolute;right:190px;top:40px
-			}
-			.PREFIX_showMiddle .PREFIX_small,.PREFIX_showBig .PREFIX_small,.PREFIX_showBig .PREFIX_middle{
-				display:none
-			}
-			.PREFIX_close{
-				width:18px;height:18px; display:block;position:absolute; top:10px; right:10px; 
-				background:url(http://s11.libmibo.com/images/module/pin/uploadClose.png) no-repeat 0 0; 
-				text-indent:-99em;z-index:10010
-			}
-			PREFIX_close:hover{
-				background-position:0 -18px
-			}".replace(/PREFIX/g, a.main).replace(/ASSETS_URL/g, a.base.imgUrl);
+			#PREFIX_Overlay{position:fixed;z-index:1000000001; top:0; right:0; left:0; bottom:0;background:black; opacity:.8}
+			#PREFIX_pinItButton{display:block;position:absolute;z-index:999999999;color:#211922;background:#FFF; text-shadow:0 1px #eaeaea; border-radius:5px; box-shadow:0 0 2px #555}
+			#PREFIX_pinBtn { display: block; position: absolute; z-index: 999999999; color: #211922; background: #fff; text-shadow: 0 1px #eaeaea; border-radius: 5px; box-shadow: 0 0 2px #555; font: 12px/1 'Helvetica Neue',Helvetica,Arial,Sans-serif; text-align: center; padding: 5px 8px; cursor: pointer; }
+			#PREFIX_pinBtn:hover { background-image: -webkit-linear-gradient(top, #fefeff, #efefef); background-image: -moz-linear-gradient(top, #fefeff, #efefef); }
+			#PREFIX_Container a,#PREFIX_Container a:active,#PREFIX_Container a:hover{text-decoration:none}
+			#PREFIX_Container {float:none;padding:20px;font-size:12px;font-family: 'helvetica neue', arial, sans-serif; position: fixed;  z-index: 1000000002;background-color: #EEE; opacity: 1;hasLayout:-1;box-shadow: 0 0 15px #000000;border-radius:4px}
+			#PREFIX_Header{position:relative;height:45px;line-height:45px;padding-right:40px;float:none}
+			#PREFIX_contentBox{float:none;height:338px;width:810px;background:#FFF;overflow-y:auto;overflow-x: hidden;position:relative}
+			#PREFIX_PinImglist{padding:0;margin:0;border:solid #CCC;border-width:0 0 0 1px;background:#FFF;overflow: hidden;padding-top:1px;width:805px}
+			#PREFIX_Footer{float:none;height:50px; padding:25px 15px 0; position:relative}.PREFIX_pinLogo{width:190px;height:35px;overflow:hidden;position:absolute;top:0; left:0;text-indent:-99em; background:url(http://s11.libmibo.com/images/pinIconv2.png) no-repeat -35px 0}
+			#PREFIX_ClosePinWindow{width:35px; height:35px;position:absolute;top:-5px; right:-5px;text-indent:-99em; overflow:hidden; background:url(http://s11.libmibo.com/images/module/pin/pinIconv2.png) no-repeat 0 0}
+			#PREFIX_PinImglist li{float:left;width:158px;height:158px;margin-top:-1px;margin-left:-1px;overflow:hidden;border:solid #CCC;border-width:1px;text-align:center;position:relative;vertical-align: middle}
+			#PREFIX_PinImglist li a.PREFIX_ItemImg{display:block;width: 158px;height: 158px;font-size: 0;overflow: hidden;text-align: center;position: relative;vertical-align: middle}
+			#PREFIX_PinImglist li a:hover{text-decoration: none}#PREFIX_PinImglist li a.PREFIX_ItemImg::after {display: inline-block;width: 0;height: 100%;content: \".\";vertical-align: middle;overflow: hidden;}
+			#PREFIX_PinImglist li img{max-width:158px; max-height:158px;vertical-align: middle;margin:auto;display:inline; z-index:10002}.PREFIX_Dimensions{background:white;border-radius: 4px;color: #000000;display:block;font-size: 10px;padding: 0 2px;position:absolute;left:55px;top:125px;text-align: center;z-index: 10003;}.PREFIX_MaskLayer{background:rgba(73, 246, 243, 0.2);display: none;position: absolute;z-index:10004;cursor: pointer;left: 0;top: 0;width: 158px;height: 158px;}
+			#PREFIX_PinImglist li a:hover .PREFIX_MaskLayer{display:block}
+			#PREFIX_PinImglist li.PREFIX_selected .PREFIX_MaskLayer{display:block}
+			#PREFIX_PinImglist .PREFIX_SelectdIcon{display:none;width:112px; height:47px;position:absolute;top:50px;left:25px;z-index:10005;background:url(http://s11.libmibo.com/images/module/pin/icaitu_bookmarklet_icon_v2.png) no-repeat 0 0}
+			#PREFIX_PinImglist .PREFIX_SelectdIcon:hover{background-position:0 -61px}
+			#PREFIX_PinImglist li a:hover{font-weight:100} 
+			#PREFIX_PinImglist li a:hover .PREFIX_SelectdIcon{display:block}
+			#PREFIX_pinTitle{height:100%; width:100%; margin:0; padding:0; text-align:right;font-size:14px;font-weight:100}
+			#PREFIX_pinTitle span{font-size:16px; padding:0 5px}
+			#PREFIX_PinImglist li.PREFIX_selected .PREFIX_SelectdIcon{background-position:0 -124px;display:block}
+			#PREFIX_pinTitle:active{cursor:move}
+			#PREFIX_PinNextBtn{width:181px; height:39px; line-height:39px; text-align:center; font-size:20px; color:#888; margin:0 auto;display: block; background:url(http://s11.libmibo.com/images/module/pin/pinIconv2.png) no-repeat 0 -36px;cursor: default;}
+			#PREFIX_PinNextBtn.PREFIX_enable{background-position:0 -76px;color:#FFF;cursor: pointer;}
+			#PREFIX_PinNextBtn:hover{text-decoration:none;color:#888}
+			#PREFIX_PinNextBtn.PREFIX_enable:hover{text-decoration:none;color:#FFF}
+			#PREFIX_selectAllBtn{display:block;width:50px;height:20px; position:absolute; left:255px;top:40px}
+			#PREFIX_selectAllBtn input{vertical-align: middle;}
+			#PREFIX_Pinfilter{display:block;position: absolute;right:190px;top:40px}.PREFIX_showMiddle .PREFIX_small,.PREFIX_showBig .PREFIX_small,.PREFIX_showBig .PREFIX_middle{display:none}.PREFIX_close{width:18px;height:18px; display:block;position:absolute; top:10px; right:10px; background:url(http://s11.libmibo.com/images/module/pin/uploadClose.png) no-repeat 0 0; text-indent:-99em;z-index:10010}PREFIX_close:hover{background-position:0 -18px}".replace(/PREFIX/g, a.main).replace(/ASSETS_URL/g, a.base.imgUrl);
 		var styleHack = {
 			ie : "
-				#PREFIX_Overlay{
-					filter:alpha(opacity=80); _position:absolute
-				}
-				#PREFIX_Container{
-					width:814px
-				}
-				.PREFIX_MaskLayer{
-					background:#49F6F3;filter: alpha(opacity=20)
-				}
-				#PREFIX_PinImglist li a{
-					zoom:1
-				}
-				#PREFIX_PinImglist .PREFIX_SelectdIcon{
-					_background:url(http://s11.libmibo.com/images/module/pin/icaitu_bookmarklet_icon_v2_ie6.png) no-repeat 0 0
-				}
-				.PREFIX_close{
-					_background:url(http://s11.libmibo.com/images/module/pin/uploadClose.png) no-repeat 0 0
-			".replace(/PREFIX/g, a.main),
+			#PREFIX_Overlay{filter:alpha(opacity=80); _position:absolute}
+
+			#PREFIX_Container{width:814px}.PREFIX_MaskLayer{background:#49F6F3;filter: alpha(opacity=20)}
+			#PREFIX_PinImglist li a{zoom:1}
+			#PREFIX_PinImglist .PREFIX_SelectdIcon{_background:url(http://s11.libmibo.com/images/module/pin/icaitu_bookmarklet_icon_v2_ie6.png) no-repeat 0 0}.PREFIX_close{_background:url(http://s11.libmibo.com/images/module/pin/uploadClose.png) no-repeat 0 0".replace(/PREFIX/g, a.main),
 			w3c : ""
 		};
 		a.browse.isIE6 && (styleHack.ie += " #PREFIX_Overlay{width:1000px;height:600px}".replace(/PREFIX/g, a.main));
@@ -560,10 +437,10 @@
 			var _imgs = typeof data.imgs == "object" ? data.imgs.join("{---}") : data.imgs;
 			var title = data.title;
 			var _pinData = {
-				url : _imgs,
-				originurl : data.srouce,
+				media : _imgs,
+				url : data.srouce,
 				title : data.title,
-                originhost:data.host
+                host:data.host
 			};
 			for (var i in _pinData) {
 				if (i == "title") {
