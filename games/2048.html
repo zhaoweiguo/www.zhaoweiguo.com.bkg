@@ -15,13 +15,12 @@
 
 </head>
 <body bgcolor=#000000  scroll="no"  style="overflow-x:hidden;overflow-y:hidden;">
-<script language=javascript src=/menu2048.js></script>
 <div id=GameBox style="position:absolute;top:0;left:0">
 <canvas id="Canvas"  style="position:absolute;top:0;left:0" width=640 height=640></canvas>
 <input type=text name="Nickname" value="" id="Nickname"   style="border:1px;border-bottom-style:none;border-top-style:none;border-left-style:none;border-right-style:none;position:absolute;top:0;left:0;color:000000;display:none"> 
 </div>
-<script language=javascript src=Loader.js></script>
-<script language=javascript src=Md5.js></script>
+<script language=javascript src=./2048/Loader.js></script>
+<script language=javascript src=./2048/Md5.js></script>
 <script language=javascript>
 var Game = {
   toplist:{},
@@ -65,64 +64,64 @@ $("Canvas").style.display="";
 ,
 init:function(){
 Game.resize();
-Loader.addimg("2.png");
-Loader.addimg("4.png");
-Loader.addimg("8.png");
-Loader.addimg("16.png");
-Loader.addimg("32.png");
-Loader.addimg("64.png");
-Loader.addimg("128.png");
-Loader.addimg("256.png");
-Loader.addimg("512.png");
-Loader.addimg("1024.png");
-Loader.addimg("2048.png");
-Loader.addimg("4096.png");
-Loader.addimg("bg.png");
-Loader.addimg("gameover.png?1");
-Loader.addimg("tryagain.png?1");
-Loader.addimg("submit.png");
-Loader.addimg("help1.png");
-Loader.addimg("help2.png");
-Loader.addimg("rankbg.png");
+Loader.addimg("./2048/2.png");
+Loader.addimg("./2048/4.png");
+Loader.addimg("./2048/8.png");
+Loader.addimg("./2048/16.png");
+Loader.addimg("./2048/32.png");
+Loader.addimg("./2048/64.png");
+Loader.addimg("./2048/128.png");
+Loader.addimg("./2048/256.png");
+Loader.addimg("./2048/512.png");
+Loader.addimg("./2048/1024.png");
+Loader.addimg("./2048/2048.png");
+Loader.addimg("./2048/4096.png");
+Loader.addimg("./2048/bg.png");
+Loader.addimg("./2048/gameover.png?1");
+Loader.addimg("./2048/tryagain.png?1");
+Loader.addimg("./2048/submit.png");
+Loader.addimg("./2048/help1.png");
+Loader.addimg("./2048/help2.png");
+Loader.addimg("./2048/rankbg.png");
 Loader.onReady = function(){
 imgs["2"] = new Image();
-imgs["2"].src = "2.png";
+imgs["2"].src = "./2048/2.png";
   imgs["4"] = new Image();
-imgs["4"].src = "4.png";
+imgs["4"].src = "./2048/4.png";
   imgs["8"] = new Image();
-imgs["8"].src = "8.png";
+imgs["8"].src = "./2048/8.png";
   imgs["16"] = new Image();
-imgs["16"].src = "16.png";
+imgs["16"].src = "./2048/16.png";
   imgs["32"] = new Image();
-imgs["32"].src = "32.png";
+imgs["32"].src = "./2048/32.png";
   imgs["64"] = new Image();
-imgs["64"].src = "64.png";
+imgs["64"].src = "./2048/64.png";
   imgs["128"] = new Image();
-imgs["128"].src = "128.png";
+imgs["128"].src = "./2048/128.png";
   imgs["256"] = new Image();
-imgs["256"].src = "256.png";
+imgs["256"].src = "./2048/256.png";
   imgs["512"] = new Image();
-imgs["512"].src = "512.png";
+imgs["512"].src = "./2048/512.png";
   imgs["1024"] = new Image();
-imgs["1024"].src = "1024.png";
+imgs["1024"].src = "./2048/1024.png";
   imgs["2048"] = new Image();
-imgs["2048"].src = "2048.png";
+imgs["2048"].src = "./2048/2048.png";
   imgs["4096"] = new Image();
-imgs["4096"].src = "4096.png";
+imgs["4096"].src = "./2048/4096.png";
   imgs["bg"] = new Image();
-imgs["bg"].src = "bg.png";
+imgs["bg"].src = "./2048/bg.png";
   imgs["gameover"] = new Image();
-imgs["gameover"].src = "gameover.png?1";
+imgs["gameover"].src = "./2048/gameover.png?1";
   imgs["tryagain"] = new Image();
-imgs["tryagain"].src = "tryagain.png?1";
+imgs["tryagain"].src = "./2048/tryagain.png?1";
   imgs["submit"] = new Image();
-imgs["submit"].src = "submit.png";
+imgs["submit"].src = "./2048/submit.png";
   imgs["help1"] = new Image();
-imgs["help1"].src = "help1.png";
+imgs["help1"].src = "./2048/help1.png";
   imgs["help2"] = new Image();
-imgs["help2"].src = "help2.png";
+imgs["help2"].src = "./2048/help2.png";
   imgs["rankbg"] = new Image();
-  imgs["rankbg"].src = "rankbg.png";
+  imgs["rankbg"].src = "./2048/rankbg.png";
   Game.run();
   if(Game.request("t")=="1"){
   Game.rank();
