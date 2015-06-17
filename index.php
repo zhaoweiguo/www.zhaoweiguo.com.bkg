@@ -36,14 +36,14 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
         <div id='qrcode_doc'></div>
     </div></b>
 <br><br>
-    <div">
+<!--
+    <div>
         <h2 color='red'>妹妹的淘宝小店: <a href="http://jujipin.taobao.com">《集品阁》小店(可以直接用手机扫描下面的二维码)</a></h2>
         <div id='qrcode_taobao'></div>
     </div>
-
 <br><br>
     <div>游戏开发文档: <a href="./game/build/html/index.html">游戏天地</a></div>
-
+-->
 <br><br>
     <div>邮箱: programfan.info#gmail.com</div>
     <div>已降临地球<font id="total_day" color='red'> </font>天</div>
@@ -115,6 +115,17 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
                                        */
           jQuery('#qrcode_taobao').qrcode("http://jujipin.taobao.com/");
       </script>
+
+
+<!-- Jifenqiang Ad Begin -->
+<script language="javascript" type="text/javascript">
+                                       var jifenqiang ={"bid":"54fff4f82221dffd478b4567","width":300,"height":300,"floating":false,"position":null};
+</script>
+<script language="javascript" type="text/javascript" src="http://banner.jifenqiang.com/js/adshow.js" charset="utf-8"></script>
+<!-- Jifenqiang Ad End -->
+
+
+
     </div>
 
   </body>
