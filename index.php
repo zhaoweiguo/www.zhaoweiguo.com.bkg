@@ -24,15 +24,15 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <br><br>
 
     <div>
-         博客: <a href="http://blog.programfan.info">Erlang——新溪-gordon之胡写乱画</a>
+         博客: <a href="http://blog.zhaoweiguo.com">Erlang——新溪-gordon之胡写乱画</a>
          <div id="qrcode_blog"></div>
     </div>
     <div>
-        论坛: <a href="http://bbs.programfan.info">一个没几个人光顾的地方</a>
+        论坛: <a href="http://bbs.zhaoweiguo.com">一个没几个人光顾的地方</a>
         <div id='qrcode_bbs'></div>
     </div>
     <b><div>
-        <font color="red">个人知识体系: </font><a href="http://www.programfan.info:8888"><font color="red">最近一年整理的知识体系</font></a>
+        <font color="red">个人知识体系: </font><a href="http://www.zhaoweiguo.com:8002"><font color="red">个人的知识体系</font></a>
         <div id='qrcode_doc'></div>
     </div></b>
 <br><br>
@@ -61,6 +61,23 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
     </div>
 
+
+<!-- 多说评论框 start -->
+                                       <div class="ds-thread" data-thread-key="www" data-title="关于<新溪-gordon>" data-url="www.zhaoweiguo.com"></div>
+<!-- 多说评论框 end -->
+                                       <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+                                       var duoshuoQuery = {short_name:"zhaoweiguo"};
+                                       (function() {
+                                         var ds = document.createElement('script');
+                                         ds.type = 'text/javascript';ds.async = true;
+                                         ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                         ds.charset = 'UTF-8';
+                                         (document.getElementsByTagName('head')[0] 
+                                          || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                       })();
+                                       </script>
+<!-- 多说公共JS代码 end -->
 
 
     <div>
@@ -117,16 +134,20 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
       </script>
 
 
-<!-- Jifenqiang Ad Begin -->
+<!-- Jifenqiang Ad Begin 
 <script language="javascript" type="text/javascript">
-                                       var jifenqiang ={"bid":"54fff4f82221dffd478b4567","width":300,"height":300,"floating":false,"position":null};
-</script>
-<script language="javascript" type="text/javascript" src="http://banner.jifenqiang.com/js/adshow.js" charset="utf-8"></script>
-<!-- Jifenqiang Ad End -->
 
+          var jifenqiang ={"bid":"54fff4f82221dffd478b4567","width":300,"height":300,"floating":false,"position":null};
+</script>
+<script language="javascript" type="text/javascript" src="http://banner.jifenqiang.com/js/adshow.js" charset="utf-8">
+
+</script>
+Jifenqiang Ad End -->
 
 
     </div>
+
+
 
   </body>
 
