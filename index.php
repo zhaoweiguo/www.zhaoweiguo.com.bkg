@@ -20,16 +20,11 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
     <div>网名: 新溪-gordon</div>
     <div>真名: 赵卫国</div>
-    <div style="display: none;">文档: <a href="http://programfan.info:8888"><b>我最近一年整理的文档</b></a></div>
 <br><br>
 
     <div>
          博客: <a href="http://blog.zhaoweiguo.com">Erlang——新溪-gordon之胡写乱画</a>
          <div id="qrcode_blog"></div>
-    </div>
-    <div>
-        论坛: <a href="http://bbs.zhaoweiguo.com">一个没几个人光顾的地方</a>
-        <div id='qrcode_bbs'></div>
     </div>
     <b><div>
         <font color="red">个人知识体系: </font><a href="http://www.zhaoweiguo.com:8002"><font color="red">个人的知识体系</font></a>
