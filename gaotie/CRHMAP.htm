@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0032)http://crh.gaotie.cn/CRHMAP.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=gb18030"><title></title>
+<meta http-equiv="imagetoolbar" content="no">
+<title>高铁线路图_中国高速铁路线路规划图_高铁网</title>
+<meta name="description" content="高铁线路图：中国高速铁路线路图,高铁线路规划图，已建成通车高铁线路（京津城际、武广高铁、沪宁、沪杭、郑西、福厦、昌九城际 等）正在建设线路（京沪高铁、京福高铁、沪昆高铁、沪汉蓉高铁、京哈高铁等）中国高速铁路网。">
+<meta name="keywords" content="高速铁路,高铁线路,高铁规划,中国高铁线路图,中国高铁规划图,高速铁路规划图">
+<style type="text/css">BODY{FONT-SIZE:12px;LINE-HEIGHT:180%;FONT-FAMILY:"Verdana","Arial","Helvetica","sans-serif"}TD{FONT-SIZE:12px;LINE-HEIGHT:150%}</style>
+<script language="JavaScript">
+drag = 0
+move = 0
+
+// 拖拽对象
+// 参见：http://blog.sina.com.cn/u/4702ecbe010007pe
+var ie=document.all;
+var nn6=document.getElementById&&!document.all;
+var isdrag=false;
+var y,x;
+var oDragObj;
+
+function moveMouse(e) {
+ if (isdrag) {
+ oDragObj.style.top  =  (nn6 ? nTY + e.clientY - y : nTY + event.clientY - y)+"px";
+ oDragObj.style.left  =  (nn6 ? nTX + e.clientX - x : nTX + event.clientX - x)+"px";
+ return false;
+ }
+}
+
+function initDrag(e) {
+ var oDragHandle = nn6 ? e.target : event.srcElement;
+ var topElement = "HTML";
+ while (oDragHandle.tagName != topElement && oDragHandle.className != "dragAble") {
+ oDragHandle = nn6 ? oDragHandle.parentNode : oDragHandle.parentElement;
+ }
+ if (oDragHandle.className=="dragAble") {
+ isdrag = true;
+ oDragObj = oDragHandle;
+ nTY = parseInt(oDragObj.style.top+0);
+ y = nn6 ? e.clientY : event.clientY;
+ nTX = parseInt(oDragObj.style.left+0);
+ x = nn6 ? e.clientX : event.clientX;
+ document.onmousemove=moveMouse;
+ return false;
+ }
+}
+document.onmousedown=initDrag;
+document.onmouseup=new Function("isdrag=false");
+
+function clickMove(s){
+ if(s=="up"){
+  dragObj.style.top = parseInt(dragObj.style.top) + 100;
+ }else if(s=="down"){
+  dragObj.style.top = parseInt(dragObj.style.top) - 100;
+ }else if(s=="left"){
+  dragObj.style.left = parseInt(dragObj.style.left) + 100;
+ }else if(s=="right"){
+  dragObj.style.left = parseInt(dragObj.style.left) - 100;
+ }
+
+}
+
+function smallit(){            
+  var height1=images1.height;            
+  var width1=images1.width;            
+  images1.height=height1/1.2;            
+  images1.width=width1/1.2;           
+}             
+    
+function bigit(){            
+ var height1=images1.height;            
+ var width1=images1.width;            
+ images1.height=height1*1.2;          
+ images1.width=width1*1.2;           
+}             
+function realsize()
+{
+ images1.height=images2.height;     
+ images1.width=images2.width;
+ block1.style.left = 0;
+ block1.style.top = 0;
+ 
+}
+function featsize()
+{
+ var width1=images2.width;            
+ var height1=images2.height;            
+ var width2=701;            
+ var height2=576;            
+ var h=height1/height2;
+ var w=width1/width2;
+ if(height1<height2&&width1<width2)
+ {
+  images1.height=height1;            
+  images1.width=width1;           
+ }
+ else
+ {
+  if(h>w)
+  {
+   images1.height=height2;          
+   images1.width=width1*height2/height1;           
+  }
+  else
+  {
+   images1.width=width2;           
+   images1.height=height1*width2/width1;          
+  }
+ }
+ block1.style.left = 0;
+ block1.style.top = 0;
+}
+
+function onWheelZoom(obj){  //滚轮缩放
+zoom = parseFloat(obj.style.zoom);
+tZoom = zoom + (event.wheelDelta>0 ? 0.05 : -0.05);
+if(tZoom<0.1 ) return true;
+obj.style.zoom=tZoom;
+return false;
+}
+</script>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+<style type="text/css">TD{FONT-SIZE:12px;COLOR:#000000}A{FONT-SIZE:12px;COLOR:#000000}#Layer1{Z-INDEX:100;POSITION:absolute;TOP:10px}#Layer2{Z-INDEX:1;POSITION:absolute}</style>
+<meta content="MSHTML 6.00.2900.3698" name="GENERATOR"><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+<body onload="" onmouseup="document.selection.empty()" oncontextmenu="return false" onselectstart="return false" ondragstart="return false" onbeforecopy="return false" style="overflow: hidden;" oncopy="document.selection.empty()" leftmargin="0" topmargin="0" onselect="document.selection.empty()" marginheight="0" marginwidth="0">
+<div id="Layer1">
+<table cellspacing="2" cellpadding="0" border="0">
+<tbody>
+<tr>
+<td>&nbsp;</td>
+<td><img title="向上" style="CURSOR: hand" onclick="clickMove(&#39;down&#39;)" height="20" src="./CRHMAP_files/up.gif" width="20"></td>
+<td>&nbsp;</td></tr>
+<tr>
+<td><img title="向左" style="CURSOR: hand" onclick="clickMove(&#39;right&#39;)" height="20" src="./CRHMAP_files/left.gif" width="20"></td>
+<td><img title="还原" style="CURSOR: hand" onclick="realsize();" height="20" src="./CRHMAP_files/zoom.gif" width="20"></td>
+<td><img title="向右" style="CURSOR: hand" onclick="clickMove(&#39;left&#39;)" height="20" src="./CRHMAP_files/right.gif" width="20"></td></tr>
+<tr>
+<td>&nbsp;</td>
+<td><img title="向下" style="CURSOR: hand" onclick="clickMove(&#39;up&#39;)" height="20" src="./CRHMAP_files/down.gif" width="20"></td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td><img title="放大" style="CURSOR: hand" onclick="bigit();" height="20" src="./CRHMAP_files/zoom_in.gif" width="20"></td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td><img title="缩小" style="CURSOR: hand" onclick="smallit();" height="20" src="./CRHMAP_files/zoom_out.gif" width="20"></td>
+<td>&nbsp;</td></tr></tbody></table></div>
+<p><br></p>
+<div id="hiddenPic" style="Z-INDEX: 1; LEFT: 0px; VISIBILITY: hidden; WIDTH: 0px; POSITION: absolute; TOP: 0px; HEIGHT: 0px"><img src="./CRHMAP_files/gaotiexianlu.jpg" border="0" name="images2"></div>
+<div class="dragAble" id="block1" onmouseover="dragObj=block1; drag=1;" style="z-index: 10; left: -299px; width: 0px; position: absolute; top: -184px; height: 0px;" onmouseout="drag=0"><img onmousewheel="return onWheelZoom(this)" style="zoom: 2.85;" src="./CRHMAP_files/gaotiexianlutu.gif" border="0" name="images1" height="401" width="503"></div>
+</body></html>
