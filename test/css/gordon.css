@@ -1,0 +1,12 @@
+/*公用的*/
+body{background: #fbf9fe;}
+.font-size-s{font-size: 13px;}
+.font-size-m{font-size: 14px;}
+.font-size-xs{font-size: 12px;}
+.gray-color{color:#999;}
+a.blue-color{color:#225fba;}
+.pull-right{float: right;}
+/*校长回复页面*/
+.reply .headpic img{width:50px;height: 50px;margin-right:5px;border-radius: 50%;}
+/*可以查看的人*/
+.grodon-delete div button{margin:5px;}
