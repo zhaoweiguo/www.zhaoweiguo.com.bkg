@@ -27,7 +27,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
          <div id="qrcode_blog"></div>
     </div>
     <b><div>
-        <font color="red">个人知识体系: </font><a href="http://www.zhaoweiguo.com:8002"><font color="red">个人的知识体系</font></a>
+        <font color="red">个人知识体系: </font><a href="http://www.zhaoweiguo.com:8080"><font color="red">个人的知识体系</font></a>
         <div id='qrcode_doc'></div>
     </div></b>
 <br><br>
