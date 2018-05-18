@@ -42,7 +42,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <br><br>
     <div>邮箱: programfan.info#gmail.com</div>
     <div>已降临地球<font id="total_day" color='red'> </font>天</div>
-    <div>还有<font id='remainder_day' color='red'></font>天到30岁</div>
+    <div>还有<font id='remainder_day' color='red'></font>天到35岁</div>
 <br/>
 <br/>
     <div>日期:<font id='now_date' color='red'><?php echo date("Y-n-j H:i:s D"); ?> </font></div>
@@ -109,10 +109,10 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
         FromMS = FromDate.getTime();
         Days = (ToMS - FromMS)/(24*3600*1000);
         document.getElementById('total_day').innerHTML = parseInt(Days);
-        // 计算我还多少天到30岁
-        date30 = new Date(2017, 7, 21);
-        toMS30 = date30.getTime();
-        Days2 = (toMS30 - ToMS)/(24*3600*1000);
+        // 计算我还多少天到35岁
+        date35 = new Date(2022, 8, 20);
+        toMS35 = date35.getTime();
+        Days2 = (toMS35 - ToMS)/(24*3600*1000);
         document.getElementById('remainder_day').innerHTML = parseInt(Days2);
         
       </script>
