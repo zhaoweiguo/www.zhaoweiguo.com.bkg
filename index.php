@@ -27,7 +27,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
          <div id="qrcode_blog"></div>
     </div>
     <b><div>
-        <font color="red">个人知识体系: </font><a href="http://www.zhaoweiguo.com:8080"><font color="red">个人的知识体系</font></a>
+        <font color="red">个人知识体系: </font><a href="http://knowledge.zhaoweiguo.com"><font color="red">个人的知识体系</font></a>
         <div id='qrcode_doc'></div>
     </div></b>
 <br><br>
@@ -107,10 +107,15 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
         FromDate = new Date(1987, 7, 21);   //出生日期(0点)
         ToMS = ToDate.getTime();
         FromMS = FromDate.getTime();
+	console.log("fromDate:"+FromDate);
+	console.log("toDate:" + ToDate);
         Days = (ToMS - FromMS)/(24*3600*1000);
+	console.log("from:"+FromMS);
+	console.log("to:" + ToMS);
+	console.log("to-from:", Days);
         document.getElementById('total_day').innerHTML = parseInt(Days);
         // 计算我还多少天到35岁
-        date35 = new Date(2022, 8, 20);
+        date35 = new Date(2022, 7, 20);
         toMS35 = date35.getTime();
         Days2 = (toMS35 - ToMS)/(24*3600*1000);
         document.getElementById('remainder_day').innerHTML = parseInt(Days2);

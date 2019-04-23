@@ -65,13 +65,13 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
         month = nowDate.getMonth();  // 0-11
         day = nowDate.getDate();   // 1-31
         ToDate = new Date(year, month, day); //今天日期(0点)
-        FromDate = new Date(1987, 7, 21);   //出生日期(0点)
+        FromDate = new Date(1987, 6, 21);   //出生日期(0点)
         ToMS = ToDate.getTime();
         FromMS = FromDate.getTime();
         Days = (ToMS - FromMS)/(24*3600*1000);
         document.getElementById('total_day').innerHTML = parseInt(Days);
-        // 计算我还多少天到30岁
-        date30 = new Date(2017, 7, 21);
+        // 计算我还多少天到40岁
+        date30 = new Date(2027, 6, 21);
         toMS30 = date30.getTime();
         Days2 = (toMS30 - ToMS)/(24*3600*1000);
         document.getElementById('remainder_day').innerHTML = parseInt(Days2);
