@@ -93,7 +93,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
 
 
-      <script type="text/javascript" src="http://exmail.qq.com/zh_CN/htmledition/js_biz/outerlogin.js"  charset="gb18030"></script>
+      <script type="text/javascript" src="https://exmail.qq.com/zh_CN/htmledition/js_biz/outerlogin.js"  charset="gb18030"></script>
 
 
       <script type="text/javascript">
@@ -117,15 +117,15 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
         
       </script>
 
-      <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+      <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
       <script src="./static/js/jquery.qrcode.min.js" ></script>
       <script>
                                        /*
           jQuery('#qrcode_blog').qrcode("http://blog.programfan.info");
           jQuery('#qrcode_bbs').qrcode("http://bbs.programfan.info");
           jQuery('#qrcode_doc').qrcode("http://www.programfan.info:8888/");
-                                       */
           jQuery('#qrcode_taobao').qrcode("http://jujipin.taobao.com/");
+                                       */
       </script>
 
 
