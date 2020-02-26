@@ -30,6 +30,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
         <font color="red">个人知识体系: </font><a href="http://knowledge.zhaoweiguo.com"><font color="red">个人的知识体系</font></a>
         <div id='qrcode_doc'></div>
     </div></b>
+    <div>备案号: <a href="http://www.beian.miit.gov.cn">京ICP备16018553号</a></div>
 <br><br>
 <!--
     <div>
